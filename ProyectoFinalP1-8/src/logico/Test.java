@@ -1,6 +1,6 @@
 package logico;
 
 public class Test {
-	//prueba jhonabel
+	//prueba jhonabel 2
 
 }
