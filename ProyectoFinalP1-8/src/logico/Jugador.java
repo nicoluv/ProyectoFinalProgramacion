@@ -119,8 +119,6 @@ public abstract class Jugador {
 		this.lesiones = lesiones;
 	}
 
-
-
 	public abstract float controlarDesempeno();
     
 }
