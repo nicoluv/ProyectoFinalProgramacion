@@ -9,7 +9,7 @@ public class Estadistica {
 	private int triples;
 	private int jonron;
 	private int ponches;
-	private int promedioBate;
+	private float promedioBate;
 	
 	public Estadistica(int juegosJugados, int turnos, int carreras, int dobles, int triples, int jonron, int ponches,
 			int promedioBate) {
@@ -66,7 +66,7 @@ public class Estadistica {
 	public void setPonches(int ponches) {
 		this.ponches = ponches;
 	}
-	public int getPromedioBate() {
+	public float getPromedioBate() {
 		return promedioBate;
 	}
 	public void setPromedioBate(int promedioBate) {

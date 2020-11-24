@@ -3,6 +3,7 @@ package logico;
 import java.util.Date;
 
 public class Lesion {
+	
 	private Date fechaLesion;
 	private String tipo;
 	private String descripcion;
