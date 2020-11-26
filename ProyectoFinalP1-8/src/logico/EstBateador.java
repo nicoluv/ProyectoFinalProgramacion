@@ -1,6 +1,6 @@
 package logico;
 
-public class EstBateador extends Bateador {
+public class EstBateador  {
 	
 	 private int juegosJugados;
 	 private int turnos;
@@ -22,7 +22,7 @@ public class EstBateador extends Bateador {
 			EstBateador miEstadistica, int juegosJugados, int turnos, int hitsConectados, int doblesConectados,
 			int triplesConectados, int homeRun, int basesAlcanzadas, int carrerasRemontadas, int basePorBola,
 			int ponches, int basesRobadas, int outRobo, int doblePlay) {
-		super(nombre, posicion, numero, estatura, peso, edad, bT, miEstadistica);
+		super();
 		this.juegosJugados = 0;
 		this.turnos = 0;
 		this.hitsConectados = 0;
