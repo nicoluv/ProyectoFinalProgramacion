@@ -1,30 +1,31 @@
 package logico;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 
 public class Bateador extends Jugador{
 	
-	private EstBateador miEstadistica;
+	private Estadistica miEstadistica;
 
-	
-	public Bateador(String nombre, String posicion, int numero, float estatura, float peso, int edad, String bT,
-			EstBateador miEstadistica) {
-		super(nombre, posicion, numero, estatura, peso, edad, bT);
-		this.miEstadistica = miEstadistica;
+
+	public Bateador(String nombre, Date fechaNacimiento, String lanzamiento, String bateo, String paisOrigen,
+			String posicion, String equipo, int numero, float estatura, float peso, int edad,
+			ArrayList<Lesion> lesiones) {
+		super(nombre, fechaNacimiento, lanzamiento, bateo, paisOrigen, posicion, equipo, numero, estatura, peso, edad,
+				lesiones);
 	}
 
-	public EstBateador getMiEstadistica() {
+	public Estadistica getMiEstadistica() {
 		return miEstadistica;
 	}
 
-	public void setMiEstadistica(EstBateador miEstadistica) {
+	public void setMiEstadistica(Estadistica miEstadistica) {
 		this.miEstadistica = miEstadistica;
 	}
 
-	@Override
-	public float controlarDesempeno() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void InsertarLesion(Lesion aux) {
+		lesiones.add(aux);
 	}
-
-
+	
 }

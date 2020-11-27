@@ -2,75 +2,116 @@ package logico;
 
 public class Estadistica {
 
-	private int juegosJugados;
-	private int turnos;
-	private int carreras;
-	private int dobles;
-	private int triples;
-	private int jonron;
-	private int ponches;
-	private float promedioBate;
+	private int AB,D,H,HR,Dobles,Triples,BB,Ponches,Errores,JuegosJug;
+	private float AVG;
 	
-	public Estadistica(int juegosJugados, int turnos, int carreras, int dobles, int triples, int jonron, int ponches,
-			int promedioBate) {
+	public Estadistica(int aB, int d, int h,  int hr, int dobles, int triples, int bB, int ponches, int errores, int juegosJug, float aVG) {
 		super();
-		this.juegosJugados = juegosJugados;
-		this.turnos = turnos;
-		this.carreras = carreras;
-		this.dobles = dobles;
-		this.triples = triples;
-		this.jonron = jonron;
-		this.ponches = ponches;
-		this.promedioBate = promedioBate;
+		AB = aB;
+		D = d;
+		H = h;
+		HR = hr;
+		Dobles = dobles;
+		Triples = triples;
+		BB = bB;
+		Ponches = ponches;
+		Errores = errores;
+		JuegosJug = juegosJug;
+		AVG = aVG;
+	}
+
+	public int getAB() {
+		return AB;
+	}
+
+	public void setAB(int aB) {
+		AB = aB;
+	}
+
+	public int getD() {
+		return D;
+	}
+
+	public void setD(int d) {
+		D = d;
+	}
+
+	public int getH() {
+		return H;
+	}
+
+	public void setH(int h) {
+		H = h;
+	}
+
+	public int getDobles() {
+		return Dobles;
+	}
+
+	public void setDobles(int dobles) {
+		Dobles = dobles;
+	}
+
+	public int getTriples() {
+		return Triples;
+	}
+
+	public void setTriples(int triples) {
+		Triples = triples;
+	}
+
+	public int getBB() {
+		return BB;
+	}
+
+	public void setBB(int bB) {
+		BB = bB;
+	}
+
+	public int getPonches() {
+		return Ponches;
+	}
+
+	public void setPonches(int ponches) {
+		Ponches = ponches;
+	}
+
+	public int getErrores() {
+		return Errores;
+	}
+
+	public void setErrores(int errores) {
+		Errores = errores;
+	}
+
+	public int getJuegosJug() {
+		return JuegosJug;
+	}
+
+	public void setJuegosJug(int juegosJug) {
+		JuegosJug = juegosJug;
+	}
+
+	public float getAVG() {
+		return AVG;
+	}
+
+	public void setAVG(float aVG) {
+		AVG = aVG;
 	}
 	
-	public int getJuegosJugados() {
-		return juegosJugados;
+	public int getHR() {
+		return HR;
 	}
-	public void setJuegosJugados(int juegosJugados) {
-		this.juegosJugados = juegosJugados;
+
+	public void setHR(int hR) {
+		HR = hR;
 	}
-	public int getTurnos() {
-		return turnos;
-	}
-	public void setTurnos(int turnos) {
-		this.turnos = turnos;
-	}
-	public int getCarreras() {
-		return carreras;
-	}
-	public void setCarreras(int carreras) {
-		this.carreras = carreras;
-	}
-	public int getDobles() {
-		return dobles;
-	}
-	public void setDobles(int dobles) {
-		this.dobles = dobles;
-	}
-	public int getTriples() {
-		return triples;
-	}
-	public void setTriples(int triples) {
-		this.triples = triples;
-	}
-	public int getJonron() {
-		return jonron;
-	}
-	public void setJonron(int jonron) {
-		this.jonron = jonron;
-	}
-	public int getPonches() {
-		return ponches;
-	}
-	public void setPonches(int ponches) {
-		this.ponches = ponches;
-	}
-	public float getPromedioBate() {
-		return promedioBate;
-	}
-	public void setPromedioBate(int promedioBate) {
-		this.promedioBate = promedioBate;
+
+	public void AVG(int H, int AB) {
+		float aux = 0;
+		aux = (float) H /AB;
+		setAVG(aux);
 	}
 	
 	

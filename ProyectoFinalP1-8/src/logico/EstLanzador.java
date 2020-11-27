@@ -2,131 +2,123 @@ package logico;
 
 public class EstLanzador {
 	
-	private int juegosLanzados;
-	private int aperturas;
-	private int juegosCompletos;
-	private int juegosGanados;
-	private int juegosPerdidos;
-	private int blanqueo;
-	private int juegosSalvaods;
-	private int iningLanzados;
-	private int hitsPermitidos;
-	private int carrerasPermitidas;
-	private int carrerasLimpias;
-	private int ponches;
-	private int basePorBola;
-	private int deBall;
+	private int JuegosIni;
+	private int HitsPitch;
+	private int CarrPitch, CarrLimpias;
+	private int JonronPitch;
+	private int BBPitch;
+	private int Ponches;
+	private int Vict, Der;
+	private float PromCL;
+	private int EntradasJugadas;
 	
-	
-	public EstLanzador(String nombre, String posicion, int numero, float estatura, float peso, int edad, String bT,
-			EstLanzador miEstadistica, int juegosLanzados, int aperturas, int juegosCompletos, int juegosGanados,
-			int juegosPerdidos, int blanqueo, int juegosSalvaods, int iningLanzados, int hitsPermitidos,
-			int carrerasPermitidas, int carrerasLimpias, int ponches, int basePorBola, int deBall) {
+	public EstLanzador(int juegosIni, int hitsPitch, int carrPitch, int carrLimpias, int jonronPitch, int bBPitch,
+			int ponches, int vict, int der, float promCL, int EntradasJugadas) {
 		super();
-		this.juegosLanzados = 0;
-		this.aperturas = 0;
-		this.juegosCompletos = 0;
-		this.juegosGanados = 0;
-		this.juegosPerdidos = 0;
-		this.blanqueo = 0;
-		this.juegosSalvaods = 0;
-		this.iningLanzados = 0;
-		this.hitsPermitidos = 0;
-		this.carrerasPermitidas = 0;
-		this.carrerasLimpias = 0;
-		this.ponches = 0;
-		this.basePorBola = 0;
-		this.deBall = 0;
+		JuegosIni = juegosIni;
+		HitsPitch = hitsPitch;
+		CarrPitch = carrPitch;
+		CarrLimpias = carrLimpias;
+		JonronPitch = jonronPitch;
+		BBPitch = bBPitch;
+		Ponches = ponches;
+		Vict = vict;
+		Der = der;
+		PromCL = promCL;
 	}
-	
-	public int getJuegosLanzados() {
-		return juegosLanzados;
+
+	public int getJuegosIni() {
+		return JuegosIni;
 	}
-	public void setJuegosLanzados(int juegosLanzados) {
-		this.juegosLanzados = juegosLanzados;
+
+	public void setJuegosIni(int juegosIni) {
+		JuegosIni = juegosIni;
 	}
-	public int getAperturas() {
-		return aperturas;
+
+	public int getHitsPitch() {
+		return HitsPitch;
 	}
-	public void setAperturas(int aperturas) {
-		this.aperturas = aperturas;
+
+	public void setHitsPitch(int hitsPitch) {
+		HitsPitch = hitsPitch;
 	}
-	public int getJuegosCompletos() {
-		return juegosCompletos;
+
+	public int getCarrPitch() {
+		return CarrPitch;
 	}
-	public void setJuegosCompletos(int juegosCompletos) {
-		this.juegosCompletos = juegosCompletos;
+
+	public void setCarrPitch(int carrPitch) {
+		CarrPitch = carrPitch;
 	}
-	public int getJuegosGanados() {
-		return juegosGanados;
+
+	public int getCarrLimpias() {
+		return CarrLimpias;
 	}
-	public void setJuegosGanados(int juegosGanados) {
-		this.juegosGanados = juegosGanados;
+
+	public void setCarrLimpias(int carrLimpias) {
+		CarrLimpias = carrLimpias;
 	}
-	public int getJuegosPerdidos() {
-		return juegosPerdidos;
+
+	public int getJonronPitch() {
+		return JonronPitch;
 	}
-	public void setJuegosPerdidos(int juegosPerdidos) {
-		this.juegosPerdidos = juegosPerdidos;
+
+	public void setJonronPitch(int jonronPitch) {
+		JonronPitch = jonronPitch;
 	}
-	public int getBlanqueo() {
-		return blanqueo;
+
+	public int getBBPitch() {
+		return BBPitch;
 	}
-	public void setBlanqueo(int blanqueo) {
-		this.blanqueo = blanqueo;
+
+	public void setBBPitch(int bBPitch) {
+		BBPitch = bBPitch;
 	}
-	public int getJuegosSalvaods() {
-		return juegosSalvaods;
-	}
-	public void setJuegosSalvaods(int juegosSalvaods) {
-		this.juegosSalvaods = juegosSalvaods;
-	}
-	public int getIningLanzados() {
-		return iningLanzados;
-	}
-	public void setIningLanzados(int iningLanzados) {
-		this.iningLanzados = iningLanzados;
-	}
-	public int getHitsPermitidos() {
-		return hitsPermitidos;
-	}
-	public void setHitsPermitidos(int hitsPermitidos) {
-		this.hitsPermitidos = hitsPermitidos;
-	}
-	public int getCarrerasPermitidas() {
-		return carrerasPermitidas;
-	}
-	public void setCarrerasPermitidas(int carrerasPermitidas) {
-		this.carrerasPermitidas = carrerasPermitidas;
-	}
-	public int getCarrerasLimpias() {
-		return carrerasLimpias;
-	}
-	public void setCarrerasLimpias(int carrerasLimpias) {
-		this.carrerasLimpias = carrerasLimpias;
-	}
+
 	public int getPonches() {
-		return ponches;
+		return Ponches;
 	}
+
 	public void setPonches(int ponches) {
-		this.ponches = ponches;
+		Ponches = ponches;
 	}
-	public int getBasePorBola() {
-		return basePorBola;
+
+	public int getVict() {
+		return Vict;
 	}
-	public void setBasePorBola(int basePorBola) {
-		this.basePorBola = basePorBola;
+
+	public void setVict(int vict) {
+		Vict = vict;
 	}
-	public int getDeBall() {
-		return deBall;
+
+	public int getDer() {
+		return Der;
 	}
-	public void setDeBall(int deBall) {
-		this.deBall = deBall;
+
+	public void setDer(int der) {
+		Der = der;
+	}
+
+	public float getPromCL() {
+		return PromCL;
+	}
+
+	public void setPromCL(float promCL) {
+		PromCL = promCL;
 	}
 	
-	public float controlarDesempeno() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getEntradasJugadas() {
+		return EntradasJugadas;
+	}
+
+	public void setEntradasJugadas(int entradasJugadas) {
+		EntradasJugadas = entradasJugadas;
+	}
+
+	public void PromCL() {
+		float aux = 0;
+		aux = (float) (CarrLimpias * 9) / EntradasJugadas;
+		setPromCL(aux);
 	}
 	
 	
