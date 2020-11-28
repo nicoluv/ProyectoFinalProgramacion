@@ -1,4 +1,4 @@
-package logico;
+ package logico;
 
 import java.util.ArrayList;
 
@@ -8,23 +8,49 @@ public class Equipo {
 	private String nombre;
 	private String estadio;
 	private String racha;
-	private static int juegosPerdidos;
-	private static int juegosGanados;
-	private static int cantJugadores;
-	private ArrayList<Jugador> misJugadores;
+	private int campeonatos;
+	private int seriesCaribe;
+	private int juegosPerdidos;
+	private int juegosGanados;
+	private int juegosJugados;
+	private int cantJugadores;
+	private ArrayList<Jugador> misJugadores = new ArrayList<>();
 
-	public Equipo(String entrenador, String nombre, String estadio, String racha, ArrayList<Jugador> misJugadores) {
+
+
+	
+
+	public Equipo(String entrenador, String nombre, String estadio, String racha, int campeonatos, int seriesCaribe,
+			int juegosPerdidos, int juegosGanados) {
 		super();
 		this.entrenador = entrenador;
 		this.nombre = nombre;
 		this.estadio = estadio;
 		this.racha = racha;
-		this.misJugadores = misJugadores;
+		this.campeonatos = campeonatos;
+		this.seriesCaribe = seriesCaribe;
+		this.juegosPerdidos = juegosPerdidos;
+		this.juegosGanados = juegosGanados;
 	}
-	
 
-	public Equipo() {
-		super();
+
+	public int getCampeonatos() {
+		return campeonatos;
+	}
+
+
+	public void setCampeonatos(int campeonatos) {
+		this.campeonatos = campeonatos;
+	}
+
+
+	public int getSeriesCaribe() {
+		return seriesCaribe;
+	}
+
+
+	public void setSeriesCaribe(int seriesCaribe) {
+		this.seriesCaribe = seriesCaribe;
 	}
 
 
@@ -60,28 +86,44 @@ public class Equipo {
 		this.racha = racha;
 	}
 
-	public static int getJuegosPerdidos() {
+
+	public int getJuegosPerdidos() {
 		return juegosPerdidos;
 	}
 
-	public static void setJuegosPerdidos(int juegosPerdidos) {
-		Equipo.juegosPerdidos = juegosPerdidos;
+
+	public void setJuegosPerdidos(int juegosPerdidos) {
+		this.juegosPerdidos = juegosPerdidos;
 	}
 
-	public static int getJuegosGanados() {
+
+	public int getJuegosGanados() {
 		return juegosGanados;
 	}
 
-	public static void setJuegosGanados(int juegosGanados) {
-		Equipo.juegosGanados = juegosGanados;
+
+	public void setJuegosGanados(int juegosGanados) {
+		this.juegosGanados = juegosGanados;
 	}
 
-	public static int getCantJugadores() {
+	
+
+	public int getJuegosJugados() {
+		return juegosJugados;
+	}
+
+
+	public void setJuegosJugados(int juegosJugados) {
+		this.juegosJugados = juegosJugados;
+	}
+
+
+	public int getCantJugadores() {
 		return cantJugadores;
 	}
 
-	public static void setCantJugadores(int cantJugadores) {
-		Equipo.cantJugadores = cantJugadores;
+	public void setCantJugadores(int cantJugadores) {
+		this.cantJugadores = cantJugadores;
 	}
 
 	public ArrayList<Jugador> getMisJugadores() {
@@ -91,5 +133,28 @@ public class Equipo {
 	public void setMisJugadores(ArrayList<Jugador> misJugadores) {
 		this.misJugadores = misJugadores;
 	}
+	
+	public void agregarJugador(Jugador aux) {
+
+		misJugadores.add(aux);
+		cantJugadores++;
+	}
+	
+	public void agregarJuegPerdido() {
+		juegosPerdidos++;
+		juegosJugados++;
+	}
+	
+	public void agregarJuegGanado() {
+		juegosGanados++;
+		juegosJugados++;
+	}	
+	
+	
+	
+	
+	
+	
+	
 
 }

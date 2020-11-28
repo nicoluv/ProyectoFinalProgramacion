@@ -38,12 +38,72 @@ public class AdmTorneo {
 		this.misJuegos = misJuegos;
 	}
 
-	public static AdmTorneo getAdministracion() {
-		return administracion;
-	}
-
 	public static void setAdministracion(AdmTorneo administracion) {
 		AdmTorneo.administracion = administracion;
 	}
+	
+	public void agregarEquipo(Equipo aux) {
+		misEquipos.add(aux);
+	}
+	
+	public void agregarPartido(Juego aux) {
+		misJuegos.add(aux);
+	}
+	
+	public Equipo encontrarEquipo(String nombre) {
+		 
+		Equipo encontrado = null;
+		
+		for (Equipo aux : misEquipos) {
+			if(aux.getNombre().equalsIgnoreCase(nombre)) {
+				encontrado = aux;
+			}
+		}
+		
+		return encontrado;
+	}
+	
+	public int indiceEquipo(String nombre) {
+		
+		int temp = -1;
+		
+		for (int i = 0; i < misEquipos.size(); i++) {
+			if(misEquipos.get(i).getNombre().equalsIgnoreCase(nombre)) {
+				temp = i;
+			}
+		}
+		
+		return temp;
+	}
+	
+	public int encontrarJugador(int i, String nombre) {
+		
+		int temp = -1;
+		
+		for (int j = 0; j < misEquipos.get(i).getMisJugadores().size(); j++) {
+			if(misEquipos.get(i).getMisJugadores().get(j).getNombre().equalsIgnoreCase(nombre)) {
+				temp = j;
+			}
+		}
+		
+		return temp;
+	}
+	
+	public boolean encontrarNumJug(Equipo equipo, int num) {
+		
+		boolean encontrado = false;
+		
+		for (Jugador aux : equipo.getMisJugadores()) {
+			if(aux.getNumero() == num) {
+				encontrado = true;
+			}
+		}
+		
+		return encontrado;
+	}
+	
+	
+
+
 
 }

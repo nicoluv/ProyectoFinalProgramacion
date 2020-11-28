@@ -3,24 +3,37 @@ package logico;
 import java.util.Date;
 
 public class Juego {
+	
 	private Equipo casa;
 	private Equipo visitante;
 	private int puntosCasa;
 	private int puntosVisitante;
 	private String estadio;
+	private String equipoGanador;
 	private Date fechaDelPartido;
-	private Boolean jugado;
+	private Boolean jugado = true;
+
+
+
 
 	public Juego(Equipo casa, Equipo visitante, int puntosCasa, int puntosVisitante, String estadio,
-			Date fechaDelPartido, Boolean jugado) {
+			String equipoGanador, Date fechaDelPartido) {
 		super();
 		this.casa = casa;
 		this.visitante = visitante;
 		this.puntosCasa = puntosCasa;
 		this.puntosVisitante = puntosVisitante;
 		this.estadio = estadio;
+		this.equipoGanador = equipoGanador;
 		this.fechaDelPartido = fechaDelPartido;
-		this.jugado = jugado;
+	}
+
+	public String getEquipoGanador() {
+		return equipoGanador;
+	}
+
+	public void setEquipoGanador(String equipoGanador) {
+		this.equipoGanador = equipoGanador;
 	}
 
 	public Equipo getCasa() {
