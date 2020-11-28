@@ -24,7 +24,7 @@ public class Bateador extends Jugador{
 		this.miEstadistica = miEstadistica;
 	}
 
-	public void InsertarLesion(Lesion aux) {
+	public void agregarLesion(Lesion aux) {
 		lesiones.add(aux);
 	}
 	
