@@ -11,13 +11,10 @@ public class Juego {
 	private String estadio;
 	private String equipoGanador;
 	private Date fechaDelPartido;
-	private Boolean jugado = true;
-
-
-
+	private Boolean enJuego = true;
 
 	public Juego(Equipo casa, Equipo visitante, int puntosCasa, int puntosVisitante, String estadio,
-			String equipoGanador, Date fechaDelPartido) {
+			String equipoGanador, Date fechaDelPartido, Boolean enJuego) {
 		super();
 		this.casa = casa;
 		this.visitante = visitante;
@@ -26,6 +23,7 @@ public class Juego {
 		this.estadio = estadio;
 		this.equipoGanador = equipoGanador;
 		this.fechaDelPartido = fechaDelPartido;
+		this.enJuego = enJuego;
 	}
 
 	public String getEquipoGanador() {
@@ -34,6 +32,7 @@ public class Juego {
 
 	public void setEquipoGanador(String equipoGanador) {
 		this.equipoGanador = equipoGanador;
+		this.enJuego = enJuego;
 	}
 
 	public Equipo getCasa() {
@@ -84,12 +83,12 @@ public class Juego {
 		this.fechaDelPartido = fechaDelPartido;
 	}
 
-	public Boolean getJugado() {
-		return jugado;
+	public Boolean getEnJuego() {
+		return enJuego;
 	}
 
-	public void setJugado(Boolean jugado) {
-		this.jugado = jugado;
+	public void setEnJuego(Boolean enJuego) {
+		this.enJuego = enJuego;
 	}
 
 }

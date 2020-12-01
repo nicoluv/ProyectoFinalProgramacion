@@ -8,12 +8,10 @@ public class Lanzador extends Jugador {
 	private EstLanzador miEstadistica;
 
 	
-	
-	public Lanzador(String nombre, Date fechaNacimiento, String lanzamiento, String bateo, String paisOrigen,
-			String posicion, String equipo, int numero, float estatura, float peso, int edad,
-			ArrayList<Lesion> lesiones) {
-		super(nombre, fechaNacimiento, lanzamiento, bateo, paisOrigen, posicion, equipo, numero, estatura, peso, edad,
-				lesiones);
+
+	public Lanzador(String nombre, String posicion, int numero, float estatura, float peso, int edad, String bT,
+			boolean disponible, String paisOrigen, ArrayList<Lesion> lesiones, String equipo) {
+		super(nombre, posicion, numero, estatura, peso, edad, bT, disponible, paisOrigen, lesiones, equipo);
 	}
 
 	public EstLanzador getMiEstadistica() {
@@ -26,6 +24,12 @@ public class Lanzador extends Jugador {
 
 	public void agregarLesion(Lesion aux) {
 		lesiones.add(aux);
+	}
+
+	@Override
+	public float controlarDesempeno() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
