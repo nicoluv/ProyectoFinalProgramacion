@@ -1,11 +1,18 @@
 package logico;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.io.*;
 
-public class AdmTorneo {
+public class AdmTorneo implements Serializable{
+	
 	private ArrayList<Equipo> misEquipos;
 	private ArrayList<Juego> misJuegos;
 	private static AdmTorneo administracion = null;
+	private static final long serialVersionUID = 1L;
 	
 	private AdmTorneo() {
 		super();
@@ -101,6 +108,40 @@ public class AdmTorneo {
 		
 		return encontrado;
 	}
+	
+	public void GuardarInfo(AdmTorneo admi) {
+		
+		File f = new File("Info.dat");
+		
+		try {
+			FileOutputStream inf = new FileOutputStream(f);
+			ObjectOutputStream obj = new ObjectOutputStream(inf);
+			obj.writeObject(admi);
+			obj.close();
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public AdmTorneo CargarInfo() {
+		
+		AdmTorneo aux = null;
+		
+		try {
+			FileInputStream f = new FileInputStream("Info.dat");
+			ObjectInputStream obj = new ObjectInputStream(f);
+			aux = (AdmTorneo) obj.readObject();
+			obj.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return aux;
+	}
+	
+
 	
 	
 
