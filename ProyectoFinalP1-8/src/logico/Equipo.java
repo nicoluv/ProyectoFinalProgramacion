@@ -7,7 +7,6 @@ public class Equipo {
 	private String entrenador;
 	private String nombre;
 	private String estadio;
-	private String racha;
 	private int campeonatos;
 	private int seriesCaribe;
 	private int juegosPerdidos;
@@ -20,13 +19,12 @@ public class Equipo {
 
 	
 
-	public Equipo(String entrenador, String nombre, String estadio, String racha, int campeonatos, int seriesCaribe,
+	public Equipo(String entrenador, String nombre, String estadio, int campeonatos, int seriesCaribe,
 			int juegosPerdidos, int juegosGanados) {
 		super();
 		this.entrenador = entrenador;
 		this.nombre = nombre;
 		this.estadio = estadio;
-		this.racha = racha;
 		this.campeonatos = campeonatos;
 		this.seriesCaribe = seriesCaribe;
 		this.juegosPerdidos = juegosPerdidos;
@@ -76,14 +74,6 @@ public class Equipo {
 
 	public void setEstadio(String estadio) {
 		this.estadio = estadio;
-	}
-
-	public String getRacha() {
-		return racha;
-	}
-
-	public void setRacha(String racha) {
-		this.racha = racha;
 	}
 
 
