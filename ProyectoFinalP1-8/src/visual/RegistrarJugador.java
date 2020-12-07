@@ -18,6 +18,7 @@ import javax.swing.JSpinner;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
+import com.toedter.calendar.JDateChooser;
 
 public class RegistrarJugador extends JDialog {
 
@@ -63,6 +64,202 @@ public class RegistrarJugador extends JDialog {
 			lblSubirImagen.setBounds(10, 22, 158, 131);
 			panelEste.add(lblSubirImagen);
 		}
+		{
+			JPanel panelCentro = new JPanel();
+			panelCentro.setBorder(new TitledBorder(null, "Informacion Principal", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panelCentro.setBounds(5, 5, 422, 213);
+			contentPanel.add(panelCentro);
+			panelCentro.setLayout(null);
+			
+			JLabel lblNombre = new JLabel("Nombre :");
+			lblNombre.setBounds(10, 26, 46, 14);
+			panelCentro.add(lblNombre);
+			
+			JLabel lblPosicion = new JLabel("Posicion :");
+			lblPosicion.setBounds(10, 61, 46, 14);
+			panelCentro.add(lblPosicion);
+			
+			JLabel lblNumero = new JLabel("Numero :");
+			lblNumero.setBounds(10, 99, 46, 14);
+			panelCentro.add(lblNumero);
+			
+			JLabel lblEstatura = new JLabel("Estatura :");
+			lblEstatura.setBounds(10, 138, 56, 14);
+			panelCentro.add(lblEstatura);
+			
+			JLabel lblPeso = new JLabel("Peso :");
+			lblPeso.setBounds(10, 176, 56, 14);
+			panelCentro.add(lblPeso);
+			
+			JSpinner spinnerEstatura = new JSpinner();
+			spinnerEstatura.setBounds(76, 135, 56, 20);
+			panelCentro.add(spinnerEstatura);
+			
+			JSpinner spinnerPeso = new JSpinner();
+			spinnerPeso.setBounds(76, 173, 56, 20);
+			panelCentro.add(spinnerPeso);
+			
+			JSpinner spinnerNumero = new JSpinner();
+			spinnerNumero.setBounds(76, 96, 56, 20);
+			panelCentro.add(spinnerNumero);
+			
+			JComboBox comboBoxPosicion = new JComboBox();
+			comboBoxPosicion.setBounds(76, 58, 86, 20);
+			panelCentro.add(comboBoxPosicion);
+			
+			textFieldNombre = new JTextField();
+			textFieldNombre.setBounds(76, 23, 86, 20);
+			panelCentro.add(textFieldNombre);
+			textFieldNombre.setColumns(10);
+			
+			JLabel lblNacimiento = new JLabel("Naciemiento :");
+			lblNacimiento.setBounds(211, 26, 65, 14);
+			panelCentro.add(lblNacimiento);
+			
+			JLabel lblBT = new JLabel("BT :");
+			lblBT.setBounds(211, 61, 46, 14);
+			panelCentro.add(lblBT);
+			
+			JLabel lblDisponible = new JLabel("Disponible :");
+			lblDisponible.setBounds(211, 99, 56, 14);
+			panelCentro.add(lblDisponible);
+			
+			JLabel lblPais = new JLabel("Pais :");
+			lblPais.setBounds(211, 138, 46, 14);
+			panelCentro.add(lblPais);
+			
+			JLabel lblEquipo = new JLabel("Equipo :");
+			lblEquipo.setBounds(211, 176, 46, 14);
+			panelCentro.add(lblEquipo);
+			
+			JComboBox comboBoxPais = new JComboBox();
+			comboBoxPais.setBounds(282, 135, 86, 20);
+			panelCentro.add(comboBoxPais);
+			
+			JComboBox comboBoxDisponible = new JComboBox();
+			comboBoxDisponible.setBounds(282, 96, 86, 20);
+			panelCentro.add(comboBoxDisponible);
+			
+			JComboBox comboBoxBT = new JComboBox();
+			comboBoxBT.setBounds(282, 58, 86, 20);
+			panelCentro.add(comboBoxBT);
+			
+			JComboBox comboBoxEquipo = new JComboBox();
+			comboBoxEquipo.setBounds(282, 173, 86, 20);
+			panelCentro.add(comboBoxEquipo);
+			
+			JDateChooser dateChooser = new JDateChooser();
+			dateChooser.setBounds(282, 26, 91, 20);
+			panelCentro.add(dateChooser);
+		}
+		
+		JPanel panelLanzador = new JPanel();
+		panelLanzador.setBorder(new TitledBorder(null, "Estadistica Lanzador", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panelLanzador.setBounds(5, 270, 610, 98);
+		contentPanel.add(panelLanzador);
+		panelLanzador.setLayout(null);
+		
+		JLabel label = new JLabel("GP:");
+		label.setBounds(10, 29, 17, 14);
+		panelLanzador.add(label);
+		
+		JSpinner spinnerGPpitch = new JSpinner();
+		spinnerGPpitch.setBounds(37, 26, 39, 20);
+		panelLanzador.add(spinnerGPpitch);
+		
+		JLabel lblEr = new JLabel("ER:");
+		lblEr.setBounds(86, 29, 29, 14);
+		panelLanzador.add(lblEr);
+		
+		JSpinner spinnerERpitch = new JSpinner();
+		spinnerERpitch.setBounds(111, 26, 39, 20);
+		panelLanzador.add(spinnerERpitch);
+		
+		JLabel label_2 = new JLabel("H:");
+		label_2.setBounds(165, 29, 17, 14);
+		panelLanzador.add(label_2);
+		
+		JSpinner spinnerHpitch = new JSpinner();
+		spinnerHpitch.setBounds(192, 26, 39, 20);
+		panelLanzador.add(spinnerHpitch);
+		
+		JLabel lblP = new JLabel("P:");
+		lblP.setBounds(241, 29, 29, 14);
+		panelLanzador.add(lblP);
+		
+		JSpinner spinnerPpitch = new JSpinner();
+		spinnerPpitch.setBounds(266, 26, 39, 20);
+		panelLanzador.add(spinnerPpitch);
+		
+		JLabel lblG = new JLabel("G:");
+		lblG.setBounds(315, 29, 17, 14);
+		panelLanzador.add(lblG);
+		
+		JSpinner spinnerGpitch = new JSpinner();
+		spinnerGpitch.setBounds(342, 26, 39, 20);
+		panelLanzador.add(spinnerGpitch);
+		
+		JLabel lblGs = new JLabel("GS:");
+		lblGs.setBounds(391, 29, 29, 14);
+		panelLanzador.add(lblGs);
+		
+		JSpinner spinnerGSpitch = new JSpinner();
+		spinnerGSpitch.setBounds(416, 26, 39, 20);
+		panelLanzador.add(spinnerGSpitch);
+		
+		JLabel label_6 = new JLabel("HR:");
+		label_6.setBounds(460, 29, 29, 14);
+		panelLanzador.add(label_6);
+		
+		JSpinner spinnerHRpitch = new JSpinner();
+		spinnerHRpitch.setBounds(487, 26, 39, 20);
+		panelLanzador.add(spinnerHRpitch);
+		
+		JLabel label_7 = new JLabel("RBI:");
+		label_7.setBounds(536, 29, 29, 14);
+		panelLanzador.add(label_7);
+		
+		JSpinner spinner_7 = new JSpinner();
+		spinner_7.setBounds(561, 26, 39, 20);
+		panelLanzador.add(spinner_7);
+		
+		JLabel label_8 = new JLabel("TB:");
+		label_8.setBounds(10, 70, 17, 14);
+		panelLanzador.add(label_8);
+		
+		JSpinner spinner_8 = new JSpinner();
+		spinner_8.setBounds(37, 67, 39, 20);
+		panelLanzador.add(spinner_8);
+		
+		JLabel label_9 = new JLabel("BB:");
+		label_9.setBounds(86, 70, 29, 14);
+		panelLanzador.add(label_9);
+		
+		JSpinner spinner_9 = new JSpinner();
+		spinner_9.setBounds(111, 67, 39, 20);
+		panelLanzador.add(spinner_9);
+		
+		JLabel label_10 = new JLabel("K:");
+		label_10.setBounds(165, 70, 17, 14);
+		panelLanzador.add(label_10);
+		
+		JSpinner spinner_10 = new JSpinner();
+		spinner_10.setBounds(192, 67, 39, 20);
+		panelLanzador.add(spinner_10);
+		
+		JPanel panelTipo = new JPanel();
+		panelTipo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo de Jugador", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panelTipo.setBounds(5, 218, 610, 43);
+		contentPanel.add(panelTipo);
+		panelTipo.setLayout(null);
+		
+		JRadioButton rdbtnBateador = new JRadioButton("Bateador");
+		rdbtnBateador.setBounds(118, 13, 109, 23);
+		panelTipo.add(rdbtnBateador);
+		
+		JRadioButton rdbtnLanzador = new JRadioButton("Lanzador");
+		rdbtnLanzador.setBounds(350, 13, 109, 23);
+		panelTipo.add(rdbtnLanzador);
 		{
 			JPanel panelBateador = new JPanel();
 			panelBateador.setBounds(5, 270, 610, 98);
@@ -174,113 +371,6 @@ public class RegistrarJugador extends JDialog {
 			spinnerDP.setBounds(342, 67, 39, 20);
 			panelBateador.add(spinnerDP);
 		}
-		{
-			JPanel panelCentro = new JPanel();
-			panelCentro.setBorder(new TitledBorder(null, "Informacion Principal", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-			panelCentro.setBounds(5, 5, 422, 213);
-			contentPanel.add(panelCentro);
-			panelCentro.setLayout(null);
-			
-			JLabel lblNombre = new JLabel("Nombre :");
-			lblNombre.setBounds(10, 26, 46, 14);
-			panelCentro.add(lblNombre);
-			
-			JLabel lblPosicion = new JLabel("Posicion :");
-			lblPosicion.setBounds(10, 61, 46, 14);
-			panelCentro.add(lblPosicion);
-			
-			JLabel lblNumero = new JLabel("Numero :");
-			lblNumero.setBounds(10, 99, 46, 14);
-			panelCentro.add(lblNumero);
-			
-			JLabel lblEstatura = new JLabel("Estatura :");
-			lblEstatura.setBounds(10, 138, 56, 14);
-			panelCentro.add(lblEstatura);
-			
-			JLabel lblPeso = new JLabel("Peso :");
-			lblPeso.setBounds(10, 176, 56, 14);
-			panelCentro.add(lblPeso);
-			
-			JSpinner spinnerEstatura = new JSpinner();
-			spinnerEstatura.setBounds(76, 135, 56, 20);
-			panelCentro.add(spinnerEstatura);
-			
-			JSpinner spinnerPeso = new JSpinner();
-			spinnerPeso.setBounds(76, 173, 56, 20);
-			panelCentro.add(spinnerPeso);
-			
-			JSpinner spinnerNumero = new JSpinner();
-			spinnerNumero.setBounds(76, 96, 56, 20);
-			panelCentro.add(spinnerNumero);
-			
-			JComboBox comboBoxPosicion = new JComboBox();
-			comboBoxPosicion.setBounds(76, 58, 86, 20);
-			panelCentro.add(comboBoxPosicion);
-			
-			textFieldNombre = new JTextField();
-			textFieldNombre.setBounds(76, 23, 86, 20);
-			panelCentro.add(textFieldNombre);
-			textFieldNombre.setColumns(10);
-			
-			JLabel lblEdad = new JLabel("Edad :");
-			lblEdad.setBounds(211, 26, 46, 14);
-			panelCentro.add(lblEdad);
-			
-			JLabel lblBT = new JLabel("BT :");
-			lblBT.setBounds(211, 61, 46, 14);
-			panelCentro.add(lblBT);
-			
-			JLabel lblDisponible = new JLabel("Disponible :");
-			lblDisponible.setBounds(211, 99, 56, 14);
-			panelCentro.add(lblDisponible);
-			
-			JLabel lblPais = new JLabel("Pais :");
-			lblPais.setBounds(211, 138, 46, 14);
-			panelCentro.add(lblPais);
-			
-			JLabel lblEquipo = new JLabel("Equipo :");
-			lblEquipo.setBounds(211, 176, 46, 14);
-			panelCentro.add(lblEquipo);
-			
-			JComboBox comboBoxPais = new JComboBox();
-			comboBoxPais.setBounds(267, 135, 86, 20);
-			panelCentro.add(comboBoxPais);
-			
-			JComboBox comboBoxDisponible = new JComboBox();
-			comboBoxDisponible.setBounds(267, 96, 86, 20);
-			panelCentro.add(comboBoxDisponible);
-			
-			JSpinner spinner = new JSpinner();
-			spinner.setBounds(267, 23, 56, 20);
-			panelCentro.add(spinner);
-			
-			JComboBox comboBoxBT = new JComboBox();
-			comboBoxBT.setBounds(267, 58, 86, 20);
-			panelCentro.add(comboBoxBT);
-			
-			JComboBox comboBoxEquipo = new JComboBox();
-			comboBoxEquipo.setBounds(267, 173, 86, 20);
-			panelCentro.add(comboBoxEquipo);
-		}
-		
-		JPanel panelLanzador = new JPanel();
-		panelLanzador.setBorder(new TitledBorder(null, "Estadistica Lanzador", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelLanzador.setBounds(5, 270, 610, 98);
-		contentPanel.add(panelLanzador);
-		
-		JPanel panelTipo = new JPanel();
-		panelTipo.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Tipo de Jugador", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panelTipo.setBounds(5, 218, 610, 43);
-		contentPanel.add(panelTipo);
-		panelTipo.setLayout(null);
-		
-		JRadioButton rdbtnBateador = new JRadioButton("Bateador");
-		rdbtnBateador.setBounds(118, 13, 109, 23);
-		panelTipo.add(rdbtnBateador);
-		
-		JRadioButton rdbtnLanzador = new JRadioButton("Lanzador");
-		rdbtnLanzador.setBounds(350, 13, 109, 23);
-		panelTipo.add(rdbtnLanzador);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
