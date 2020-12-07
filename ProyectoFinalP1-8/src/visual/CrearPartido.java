@@ -22,6 +22,7 @@ import java.awt.Font;
 public class CrearPartido extends JFrame {
 
 	private JPanel contentPane;
+	private JButton btnAtras;
 
 	/**
 	 * Launch the application.
@@ -77,33 +78,33 @@ public class CrearPartido extends JFrame {
 		lblEquipoVisitante.setBounds(10, 108, 95, 21);
 		panel_1.add(lblEquipoVisitante);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM"}));
-		comboBox.setBounds(126, 43, 150, 20);
-		panel_1.add(comboBox);
+		JComboBox comboBoxHoraPartido = new JComboBox();
+		comboBoxHoraPartido.setModel(new DefaultComboBoxModel(new String[] {"5:00 PM", "5:30 PM", "6:00 PM", "6:30 PM", "7:00 PM", "7:30 PM", "8:00 PM"}));
+		comboBoxHoraPartido.setBounds(126, 43, 150, 20);
+		panel_1.add(comboBoxHoraPartido);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"Aguilas Cibaeñas", "Tigres del Licey", "Leones del Escogido", "Toros del Este", "Estrellas Orientales", "Gigantes del Cibao"}));
-		comboBox_1.setBounds(126, 76, 150, 20);
-		panel_1.add(comboBox_1);
+		JComboBox comboBoxEquipoLocal = new JComboBox();
+		comboBoxEquipoLocal.setModel(new DefaultComboBoxModel(new String[] {"Aguilas Cibaeñas", "Tigres del Licey", "Leones del Escogido", "Toros del Este", "Estrellas Orientales", "Gigantes del Cibao"}));
+		comboBoxEquipoLocal.setBounds(126, 76, 150, 20);
+		panel_1.add(comboBoxEquipoLocal);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"Aguilas Cibaeñas", "Tigres del Licey", "Leones del Escogido", "Toros del Este", "Estrellas Orientales", "Gigantes del Cibao"}));
-		comboBox_2.setBounds(126, 108, 151, 20);
-		panel_1.add(comboBox_2);
+		JComboBox comboBox_EquipoVisita = new JComboBox();
+		comboBox_EquipoVisita.setModel(new DefaultComboBoxModel(new String[] {"Aguilas Cibaeñas", "Tigres del Licey", "Leones del Escogido", "Toros del Este", "Estrellas Orientales", "Gigantes del Cibao"}));
+		comboBox_EquipoVisita.setBounds(126, 108, 151, 20);
+		panel_1.add(comboBox_EquipoVisita);
 		
-		Choice choice = new Choice();
-		choice.setBounds(126, 12, 150, 20);
-		panel_1.add(choice);
+		Choice choiceFechaPartido = new Choice();
+		choiceFechaPartido.setBounds(126, 12, 150, 20);
+		panel_1.add(choiceFechaPartido);
 		
-		JButton btnNewButton = new JButton("Crear");
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton.setBounds(198, 179, 89, 23);
-		panel.add(btnNewButton);
+		JButton btnCrear = new JButton("Crear");
+		btnCrear.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCrear.setBounds(198, 179, 89, 23);
+		panel.add(btnCrear);
 		
-		JButton btnNewButton_1 = new JButton("Atras");
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnNewButton_1.setBounds(20, 179, 89, 23);
-		panel.add(btnNewButton_1);
+		btnAtras = new JButton("Atras");
+		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnAtras.setBounds(20, 179, 89, 23);
+		panel.add(btnAtras);
 	}
 }
