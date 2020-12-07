@@ -10,23 +10,23 @@ public abstract class Jugador {
     protected int numero;
     protected float estatura;
     protected float peso;
-    protected int edad; 
+    protected Date nacimiento; 
     protected String bt;
     protected boolean disponible  = true;
     protected String paisOrigen;
     protected ArrayList<Lesion> lesiones;
     protected String equipo;
     
-	public Jugador(String nombre, String posicion, int numero, float estatura, float peso, int edad, String bT,
-			boolean disponible, String paisOrigen, ArrayList<Lesion> lesiones, String equipo) {
+	public Jugador(String nombre, String posicion, int numero, float estatura, float peso, Date nacimiento, String bt,
+			boolean disponible, String paisOrigen, String equipo) {
 		super();
 		this.nombre = nombre;
 		this.posicion = posicion;
 		this.numero = numero;
 		this.estatura = estatura;
 		this.peso = peso;
-		this.edad = edad;
-		this.bt = bT;
+		this.nacimiento = nacimiento;
+		this.bt = bt;
 		this.disponible = disponible;
 		this.paisOrigen = paisOrigen;
 		this.lesiones = new ArrayList<Lesion>();
@@ -66,7 +66,7 @@ public abstract class Jugador {
 
 
 	public void setEquipo(String equipo) {
-		equipo = equipo;
+		this.equipo = equipo;
 	}
 
 
@@ -131,26 +131,22 @@ public abstract class Jugador {
 
 
 
-	public int getEdad() {
-		return edad;
+	public Date getNacimiento() {
+		return nacimiento;
+	}
+
+	public void setNacimiento(Date nacimiento) {
+		this.nacimiento = nacimiento;
 	}
 
 
-
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
-
-
-	public String getBT() {
+	public String getBt() {
 		return bt;
 	}
 
-
-	public void setBT(String bT) {
-		bt = bT;
+	public void setBt(String bt) {
+		this.bt = bt;
 	}
-
 
 	public ArrayList<Lesion> getLesiones() {
 		return lesiones;

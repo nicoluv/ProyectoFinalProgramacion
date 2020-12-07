@@ -13,7 +13,7 @@ public class EstLanzador {
 	private int EntradasJugadas;
 	
 	public EstLanzador(int juegosIni, int hitsPitch, int carrPitch, int carrLimpias, int jonronPitch, int bBPitch,
-			int ponches, int vict, int der, float promCL, int EntradasJugadas) {
+			int ponches, int vict, int der, int EntradasJugadas) {
 		super();
 		JuegosIni = juegosIni;
 		HitsPitch = hitsPitch;
@@ -24,7 +24,7 @@ public class EstLanzador {
 		Ponches = ponches;
 		Vict = vict;
 		Der = der;
-		PromCL = promCL;
+		PromCL = 0;
 	}
 
 	public int getJuegosIni() {

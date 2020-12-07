@@ -6,22 +6,24 @@ import java.util.Date;
 
 public class Bateador extends Jugador{
 	
-	private Estadistica miEstadistica;
-
-
-
-	public Bateador(String nombre, String posicion, int numero, float estatura, float peso, int edad, String bT,
-			boolean disponible, String paisOrigen, ArrayList<Lesion> lesiones, String equipo) {
-		super(nombre, posicion, numero, estatura, peso, edad, bT, disponible, paisOrigen, lesiones, equipo);
+	private EstBateador miEstadistica;
+	
+	public Bateador(String nombre, String posicion, int numero, float estatura, float peso, Date nacimiento, String bt,
+			boolean disponible, String paisOrigen, String equipo, EstBateador miEstadistica) {
+		super(nombre, posicion, numero, estatura, peso, nacimiento, bt, disponible, paisOrigen, equipo);
+		this.miEstadistica = miEstadistica;
 	}
+	
 
-	public Estadistica getMiEstadistica() {
+	public EstBateador getMiEstadistica() {
 		return miEstadistica;
 	}
 
-	public void setMiEstadistica(Estadistica miEstadistica) {
+
+	public void setMiEstadistica(EstBateador miEstadistica) {
 		this.miEstadistica = miEstadistica;
 	}
+
 
 	public void agregarLesion(Lesion aux) {
 		lesiones.add(aux);

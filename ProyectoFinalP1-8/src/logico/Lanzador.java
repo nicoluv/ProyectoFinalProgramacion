@@ -9,9 +9,12 @@ public class Lanzador extends Jugador {
 
 	
 
-	public Lanzador(String nombre, String posicion, int numero, float estatura, float peso, int edad, String bT,
-			boolean disponible, String paisOrigen, ArrayList<Lesion> lesiones, String equipo) {
-		super(nombre, posicion, numero, estatura, peso, edad, bT, disponible, paisOrigen, lesiones, equipo);
+
+
+	public Lanzador(String nombre, String posicion, int numero, float estatura, float peso, Date nacimiento, String bt,
+			boolean disponible, String paisOrigen, String equipo, EstLanzador miEstadistica) {
+		super(nombre, posicion, numero, estatura, peso, nacimiento, bt, disponible, paisOrigen, equipo);
+		this.miEstadistica = miEstadistica;
 	}
 
 	public EstLanzador getMiEstadistica() {
