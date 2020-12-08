@@ -1,5 +1,5 @@
 package visual;
-import logico.*;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -7,21 +7,27 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.sun.glass.events.MouseEvent;
+import logic.Administracion;
+import logic.Equipo;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
+import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.ListSelectionModel;
+import java.awt.Color;
 
 public class GestionarLesion extends JDialog {
 
@@ -30,204 +36,191 @@ public class GestionarLesion extends JDialog {
 	public static DefaultTableModel model;
 	public static Object[] fila;
 	private int index = 0;
-	private static JComboBox cBoxEquipo;
+	private static JComboBox cbxEquipos;
 	private ArrayList<String> NombresEquipos = new ArrayList<String>();
-	private JButton btnRecuperar;
-	private JButton btnRegistrar;
-	private JButton btnLista;
+	private JButton btnRecuperacion;
+	private JButton btnRegistrarLesion;
+	private JButton btnHistorialDeLesiones;
+	/**
+	 * Launch the application.
+	 */
 
-
-	
-	
-	
+	/**
+	 * Create the dialog.
+	 */
 	public GestionarLesion() {
 		setTitle("Gestion de lesiones");
-		setBounds(100, 100, 501, 434);
+		setResizable(false);
+		setBounds(100, 100, 823, 408);
+		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 485, 350);
-		contentPanel.add(panel);
-		panel.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("Equipo a seleccionar :");
-		lblNewLabel.setBounds(23, 25, 104, 14);
-		panel.add(lblNewLabel);
-		
+		contentPanel.setLayout(new BorderLayout(0, 0));
+		{
+			JPanel panel = new JPanel();
+			panel.setBackground(Color.GRAY);
+			panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			contentPanel.add(panel, BorderLayout.CENTER);
+			panel.setLayout(null);
+			
+			JLabel lblNewLabel = new JLabel("Seleccione Equipo:");
+			lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			lblNewLabel.setBounds(10, 22, 148, 14);
+			panel.add(lblNewLabel);
+			
+			
+			for (Equipo aux : Administracion.getInstancia().getMisEquipos()) {
+				NombresEquipos.add(aux.getNombre());
+			}
+			
+			cbxEquipos = new JComboBox(NombresEquipos.toArray());
+			cbxEquipos.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					loadtable();
+				}
+			});
+			cbxEquipos.setBounds(127, 16, 127, 25);
+			panel.add(cbxEquipos);
+			
+			JScrollPane scrollPane = new JScrollPane();
+			scrollPane.setBounds(10, 67, 777, 245);
+			panel.add(scrollPane);
+			
+			
+			String[] header = {"Nombre", "Posición", "Disponibilida", "Tipo de lesion", "Dias de reposo"};
+			model = new DefaultTableModel();
+			model.setColumnIdentifiers(header);
+			table = new JTable();
+			table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+			table.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if(table.getSelectedRow()>= 0) {
+						index = table.getSelectedRow();
+						btnHistorialDeLesiones.setEnabled(true);
+						btnRecuperacion.setEnabled(true);
+						btnRegistrarLesion.setEnabled(true);
+					}
 
-		for (Equipo aux : AdmTorneo.getInstancia().getMisEquipos()) {
-			NombresEquipos.add(aux.getNombre());
+				}
+			});
+			table.setModel(model);
+			scrollPane.setViewportView(table);
+			loadtable();
 		}
-		
-		cBoxEquipo = new JComboBox(NombresEquipos.toArray());
-		cBoxEquipo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cargarTabla();
-			}
-		});
-		cBoxEquipo.setBounds(137, 22, 83, 20);
-		panel.add(cBoxEquipo);
-		
-		JButton btnRegistrar = new JButton("Registrar");
-		btnRegistrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(index).isDisponible() == false) {
-					JOptionPane.showMessageDialog(null, "El jugador ya se encuentra lesionado.","Información",JOptionPane.INFORMATION_MESSAGE);
-				}
-				else {
-					RegistrarLesion rl = new RegistrarLesion(index, cBoxEquipo.getSelectedIndex());
-					rl.setModal(true);
-					rl.setVisible(true);
-					cargarTabla();
-				}
-
+		{
+			JPanel buttonPane = new JPanel();
+			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			
-			
-			
-			
-			}
-		});
-		btnRegistrar.setBounds(263, 21, 89, 23);
-		panel.add(btnRegistrar);
-		
-		JButton btnRecuperar = new JButton("Recuperar");
-		btnRecuperar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(index).isDisponible() == false) {
-					int check = JOptionPane.showConfirmDialog(null, "Se encuentra recuperado y en plena forma", "Confirmacion", JOptionPane.WARNING_MESSAGE);
-					if(check == JOptionPane.OK_OPTION) {
-						AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(index).setMiLesion(null);
-						AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(index).setDisponible(true);
-						AdmTorneo.getInstancia().GuardarInfo(AdmTorneo.getInstancia());
-						
-						cargarTabla();
+			btnHistorialDeLesiones = new JButton("Historial de Lesiones");
+			btnHistorialDeLesiones.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			btnHistorialDeLesiones.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(index).getMisLesiones().isEmpty()) {
+						JOptionPane.showMessageDialog(null, "El jugador nunca ha sufrido una lesión.");
+					}
+					else {
+						ListaLesiones HL = new ListaLesiones(index, cbxEquipos.getSelectedIndex());
+						HL.setModal(true);
+						HL.setVisible(true);
 					}
 				}
-				else {
-					JOptionPane.showMessageDialog(null, "El jugador esta en plena forma.");
+			});
+			btnHistorialDeLesiones.setEnabled(false);
+			buttonPane.add(btnHistorialDeLesiones);
+			
+			btnRecuperacion = new JButton("Recuperacion");
+			btnRecuperacion.setFont(new Font("Tahoma", Font.PLAIN, 11));
+			btnRecuperacion.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					if(Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(index).isEstado() == false) {
+						int check = JOptionPane.showConfirmDialog(null, "¿El jugador se recuperó?", "Aviso", JOptionPane.WARNING_MESSAGE);
+						if(check == JOptionPane.OK_OPTION) {
+							Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(index).setMiLesion(null);
+							Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(index).setEstado(true);
+							Administracion.getInstancia().Guardar(Administracion.getInstancia());
+							
+							loadtable();
+						}
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "El jugador esta en plena forma.");
+					}
 				}
-
-			
-			
-			
-			
-			
-			
-			
+			});
+			btnRecuperacion.setEnabled(false);
+			buttonPane.add(btnRecuperacion);
+			{
+				btnRegistrarLesion = new JButton("Registrar Lesion");
+				btnRegistrarLesion.setFont(new Font("Tahoma", Font.PLAIN, 11));
+				btnRegistrarLesion.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(index).isEstado() == false) {
+							JOptionPane.showMessageDialog(null, "El jugador ya se encuentra lesionado.","Información",JOptionPane.INFORMATION_MESSAGE);
+						}
+						else {
+							RegLesion rl = new RegLesion(index, cbxEquipos.getSelectedIndex());
+							rl.setModal(true);
+							rl.setVisible(true);
+							loadtable();
+						}
+					}
+				});
+				btnRegistrarLesion.setEnabled(false);
+				btnRegistrarLesion.setActionCommand("OK");
+				buttonPane.add(btnRegistrarLesion);
+				getRootPane().setDefaultButton(btnRegistrarLesion);
 			}
-		});
-		btnRecuperar.setBounds(367, 21, 89, 23);
-		panel.add(btnRecuperar);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(423, 284, -346, -132);
-		panel.add(scrollPane);
-		
-		
-
-		
-		String[] header = {"Nombre", "Posición", "Estado", "Tipo de lesion", "Dias de Descanso"};
-		model = new DefaultTableModel();
-		model.setColumnIdentifiers(header);
-		table = new JTable();
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent e) {
-				if(table.getSelectedRow()>= 0) {
-					index = table.getSelectedRow();
-					btnLista.setEnabled(true);
-					btnRecuperar.setEnabled(true);
-					btnRegistrar.setEnabled(true);
-				}
-
+			{
+				JButton btnCancelar = new JButton("Cancelar");
+				btnCancelar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						dispose();
+					}
+				});
+				btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+				btnCancelar.setActionCommand("Cancel");
+				buttonPane.add(btnCancelar);
 			}
-		});
-		table.setModel(model);
-		scrollPane.setViewportView(table);
-		cargarTabla();
-
-		
-		
-		
-		JPanel panelBotones = new JPanel();
-		panelBotones.setBounds(0, 351, 485, 44);
-		contentPanel.add(panelBotones);
-		panelBotones.setLayout(null);
-		
-		JButton btnCancelar = new JButton("Cancelar");
-		btnCancelar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			dispose();
-			}
-		});
-		btnCancelar.setBounds(374, 11, 89, 23);
-		panelBotones.add(btnCancelar);
-		
-		JButton btnLista = new JButton("Listar");
-		btnLista.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			
-				if(AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(index).getLesiones().isEmpty()) {
-					JOptionPane.showMessageDialog(null, "El jugador nunca ha sufrido una lesión.");
-				}
-				else {
-					ListaLesiones LL = new ListaLesiones(index, cBoxEquipo.getSelectedIndex());
-					LL.setModal(true);
-					LL.setVisible(true);
-					;
-				}
-
-			
-			}
-		});
-		btnLista.setBounds(275, 11, 89, 23);
-		btnLista.setEnabled(false);
-		panelBotones.add(btnLista);
-		
-		
-		
-		
-		
+		}
 	}
-	
-	
-	
-	
-	private void cargarTabla () {
+
+
+	private void loadtable() {
 		// TODO Auto-generated method stub
 		model.setRowCount(0);
 		
 		fila = new Object[model.getColumnCount()];
-			for (int i = 0; i < AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().size(); i++) {
-				fila[0] = AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(i).getNombre();
-				fila[1] = AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(i).getPosicion();
-				if(AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(i).isDisponible() == true) {
-					fila[2] = "En Forma";
+			for (int i = 0; i < Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().size(); i++) {
+				fila[0] = Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(i).getNombre();
+				fila[1] = Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(i).getPosicion();
+				if(Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(i).isEstado() == true) {
+					fila[2] = "Saludable";
 				}
 				else{
-					fila[2] = "Lesionado";
+					fila[2] = "Con Lesion";
 				}
-				if(AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(i).getMiLesion() == null) {
+				if(Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(i).getMiLesion() == null) {
 					fila[3] = "Ninguna";
 				}
 				else {
-					fila[3] = AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(i).getMiLesion().getTipo();
+					fila[3] = Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(i).getMiLesion().getTipoLesion();
 
 				}
-				if(AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(i).getMiLesion() == null ) {
-					fila[4] = "Activo";
+				if(Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(i).getMiLesion() == null ) {
+					fila[4] = "Disponible";
 				}
 				else {
-					fila[4] = AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(i).getMiLesion().getDiasDescanso();
+					fila[4] = Administracion.getInstancia().getMisEquipos().get(cbxEquipos.getSelectedIndex()).getJugadores().get(i).getMiLesion().getDiasRec();
 
 				}
 				
-
+				Renderer edit = new Renderer();
+				table.setDefaultRenderer(Object.class, edit);
 				model.addRow(fila);
 		}
-
-}
+		
+	}
 }

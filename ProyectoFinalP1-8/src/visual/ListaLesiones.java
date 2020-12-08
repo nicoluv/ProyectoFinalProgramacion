@@ -2,34 +2,32 @@ package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import com.sun.glass.events.MouseEvent;
-import logico.*;
+import logic.Administracion;
+
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Color;
+import javax.swing.UIManager;
+import java.awt.Font;
 
 public class ListaLesiones extends JDialog {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 
-	public ListaLesiones() {
-	}
 	private final JPanel contentPanel = new JPanel();
 	private JTable table;
 	public static DefaultTableModel model;
@@ -45,11 +43,12 @@ public class ListaLesiones extends JDialog {
 	private JLabel lblPosicin;
 	private JLabel lblEquipo_1;
 	private static DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+	private JLabel lblNewLabel;
 
 	public ListaLesiones(int i, int e) {
 		MiJugador = i;
 		MiEquipo = e;
-		setTitle("Historial de Lesiones");
+		setTitle("Lista de Lesiones");
 		setBounds(100, 100, 690, 440);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -58,7 +57,9 @@ public class ListaLesiones extends JDialog {
 		contentPanel.setLayout(new BorderLayout(0, 0));
 		{
 			JPanel panel = new JPanel();
-			panel.setBorder(new TitledBorder(null, "Lesiones de pasadas", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+			panel.setBackground(Color.GRAY);
+			panel.setForeground(Color.GRAY);
+			panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 			contentPanel.add(panel, BorderLayout.CENTER);
 			panel.setLayout(null);
 			
@@ -66,7 +67,7 @@ public class ListaLesiones extends JDialog {
 			scrollPane.setBounds(12, 78, 638, 257);
 			panel.add(scrollPane);
 			
-			String[] header = {"Tipo", "Localizacion", "Dias de Reposo", "Fecha"};
+			String[] header = {"Tipo", "Atendido Por", "Dias de Reposo", "Fecha"};
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(header);
 			table = new JTable();
@@ -99,15 +100,20 @@ public class ListaLesiones extends JDialog {
 				panel.add(lblEquipo);
 			}
 			
-			lblNombre.setText(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getNombre());
-			lblPos.setText(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getPosicion());
-			lblEquipo.setText(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getNombre());
+			lblNombre.setText(Administracion.getInstancia().getMisEquipos().get(MiEquipo).getJugadores().get(MiJugador).getNombre());
+			lblEdad.setText(String.valueOf(Administracion.getInstancia().getMisEquipos().get(MiEquipo).getJugadores().get(MiJugador).getEdad()));
+			lblPos.setText(Administracion.getInstancia().getMisEquipos().get(MiEquipo).getJugadores().get(MiJugador).getPosicion());
+			lblEquipo.setText(Administracion.getInstancia().getMisEquipos().get(MiEquipo).getNombre());
 			{
 				lblNombre_1 = new JLabel("Nombre:");
 				lblNombre_1.setBounds(12, 28, 55, 16);
 				panel.add(lblNombre_1);
 			}
-
+			{
+				lblEdad_1 = new JLabel("Edad:");
+				lblEdad_1.setBounds(12, 50, 55, 16);
+				panel.add(lblEdad_1);
+			}
 			{
 				lblPosicin = new JLabel("Posici\u00F3n:");
 				lblPosicin.setBounds(323, 28, 55, 16);
@@ -118,13 +124,19 @@ public class ListaLesiones extends JDialog {
 				lblEquipo_1.setBounds(323, 50, 55, 16);
 				panel.add(lblEquipo_1);
 			}
+			{
+				lblNewLabel = new JLabel("Lista de Lesiones del Jugador");
+				lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+				lblNewLabel.setBounds(262, 11, 188, 14);
+				panel.add(lblNewLabel);
+			}
 		}
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				JButton cancelButton = new JButton("Cerrar");
+				JButton cancelButton = new JButton("Cancelar");
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -145,12 +157,12 @@ public class ListaLesiones extends JDialog {
 		
 		fila = new Object[model.getColumnCount()];
 		
-		for (int i = 0; i < AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getLesiones().size(); i++) {
-			fila[0] = AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getLesiones().get(i).getTipo();
-			fila[1] = AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getLesiones().get(i).getLocalizacion();
-			fila[2] = AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getLesiones().get(i).getDiasDescanso() + " Dias";
+		for (int i = 0; i < Administracion.getInstancia().getMisEquipos().get(MiEquipo).getJugadores().get(MiJugador).getMisLesiones().size(); i++) {
+			fila[0] = Administracion.getInstancia().getMisEquipos().get(MiEquipo).getJugadores().get(MiJugador).getMisLesiones().get(i).getTipoLesion();
+			fila[1] = Administracion.getInstancia().getMisEquipos().get(MiEquipo).getJugadores().get(MiJugador).getMisLesiones().get(i).getAtendNombre();
+			fila[2] = Administracion.getInstancia().getMisEquipos().get(MiEquipo).getJugadores().get(MiJugador).getMisLesiones().get(i).getDiasRec() + " Dias";
 			
-			date = AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getLesiones().get(i).getFechaLesion();
+			date = Administracion.getInstancia().getMisEquipos().get(MiEquipo).getJugadores().get(MiJugador).getMisLesiones().get(i).getFechaLesion();
 			fecha = format.format(date);
 			
 			fila[3] = fecha;
@@ -159,5 +171,4 @@ public class ListaLesiones extends JDialog {
 		}
 		
 	}
-
 }

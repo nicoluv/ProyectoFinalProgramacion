@@ -6,149 +6,96 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import java.awt.Color;
-import java.awt.SystemColor;
-import javax.swing.border.TitledBorder;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JDialog;
 
 import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JTextField;
+import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.TextField;
-import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
-import java.awt.Label;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.Color;
 
-public class Login extends JFrame {
+public class Login extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField txtUsuario;
-	private JPasswordField txtClave;
+	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public Login() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 331, 392);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(null, "Bienvenido", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBackground(SystemColor.menu);
-		panel.setBounds(0, 0, 308, 337);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 190, 288, 96);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("Clave");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_1.setBounds(10, 54, 45, 22);
-		panel_1.add(lblNewLabel_1);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		JLabel lblNewLabel = new JLabel("Usuario");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(10, 12, 45, 31);
-		panel_1.add(lblNewLabel);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-		txtUsuario = new JTextField();
-		txtUsuario.setBounds(65, 17, 209, 24);
-		panel_1.add(txtUsuario);
-		txtUsuario.setColumns(10);
-		
-		txtClave = new JPasswordField();
-		txtClave.setBounds(65, 56, 209, 23);
-		panel_1.add(txtClave);
-		txtClave.setColumns(10);
-		
-		JButton btnSalir = new JButton("Salir");
-		btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
 				System.exit(0);
 			}
 		});
-		btnSalir.setBounds(198, 297, 89, 29);
-		panel.add(btnSalir);
 		
-		JButton btnIngresar = new JButton("Ingresar");
-		btnIngresar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnIngresar.addActionListener(new ActionListener() {
+		setTitle("Iniciar sesi\u00F3n");
+		setResizable(false);
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 319, 294);
+		setLocationRelativeTo(null);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.RED);
+		contentPane.add(panel, BorderLayout.CENTER);
+		panel.setLayout(null);
+		
+		JLabel lblUsuario = new JLabel("Usuario:");
+		lblUsuario.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblUsuario.setBounds(43, 105, 46, 14);
+		panel.add(lblUsuario);
+		
+		txtUsuario = new JTextField();
+		txtUsuario.setBounds(106, 102, 138, 20);
+		panel.add(txtUsuario);
+		txtUsuario.setColumns(10);
+		
+		JLabel lblContrasea = new JLabel("Contrase\u00F1a:");
+		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblContrasea.setBounds(43, 166, 60, 14);
+		panel.add(lblContrasea);
+		
+		JButton btnEntrar = new JButton("Iniciar Sesion");
+		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-		        String usuario = "Admin";
-		        String password = "12345";
-		       
-		        if(usuario.equals(txtUsuario.getText()) && password.equals(txtClave.getText())){
-		            // Poner principal visual
-		            
-		        }else if (usuario.equals(txtUsuario.getText().equals("")) && password.equals(txtClave.getText().equals(""))){
-		        	JOptionPane.showMessageDialog(contentPane, "Usuario y/o Contraseña estan vacios\nIngrese su usuario y contraseña",null, getDefaultCloseOperation());
-		        	txtUsuario.setFocusable(true); 
-		        	
-		        }else if (usuario.equals(txtUsuario.getText().equals(""))){
-		        	
-		        	JOptionPane.showMessageDialog(contentPane, "Usuario y/o Contraseña estan vacios\nIngrese su usuario y contraseña",null, getDefaultCloseOperation());
-		        	txtUsuario.setFocusable(true); 
-
-		        }else if (password.equals(txtClave.getText().equals(""))){
-		        	JOptionPane.showMessageDialog(contentPane, "Usuario y/o Contraseña estan vacios\nIngrese su usuario y contraseña",null, getDefaultCloseOperation());
-		        	txtUsuario.setFocusable(true); 
-
-		        }else if(txtUsuario.getText().compareTo(usuario) != 0 && txtClave.getText().compareTo(password) != 0){
-		        	JOptionPane.showMessageDialog(contentPane, "Usuario y Contraseña estan vacios\nIngrese su usuario y contraseña",null, getDefaultCloseOperation());
-		        	txtUsuario.setFocusable(true); 
-		        }else if (txtUsuario.getText().compareTo(usuario) != 0){
-		        	JOptionPane.showMessageDialog(contentPane, "Usuario Incorrecto\nIngrese su usuario y contraseña",null, getDefaultCloseOperation());
-		        	txtUsuario.setFocusable(true); 
-		        }else if (txtClave.getText().compareTo(usuario) != 0){
-		        	JOptionPane.showMessageDialog(contentPane, "Clave Incorrecto\nIngrese su usuario y contraseña",null, getDefaultCloseOperation());
-		        	txtUsuario.setFocusable(true); 
-
-		        }
-		        
-		    }
+				String user, pass;
+				user = txtUsuario.getText();
+				pass = String.valueOf(passwordField.getPassword());
+				
+				if(user.isEmpty() || pass.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Ha dejado campos vac�os.","Aviso",JOptionPane.WARNING_MESSAGE);
+				}
+				else if(user.contentEquals("admin")  && pass.contentEquals("admin")){
+					JOptionPane.showMessageDialog(null, "Ha iniciado sesi�n correctamente","Informaci�n",JOptionPane.INFORMATION_MESSAGE);
+					dispose();
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "El usuario o contrase�a es incorrecto","Aviso",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "User: "+user+"Pass: "+pass,"Aviso",JOptionPane.WARNING_MESSAGE);
+				}
+			}
 		});
-		btnIngresar.setBounds(10, 297, 89, 29);
-		panel.add(btnIngresar);
+		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnEntrar.setBounds(106, 205, 106, 23);
+		panel.add(btnEntrar);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(23, 35, 260, 130);
-		panel.add(panel_2);
-		panel_2.setLayout(null);
+		passwordField = new JPasswordField();
+		passwordField.setBounds(106, 163, 138, 20);
+		panel.add(passwordField);
 		
-		Label label = new Label("FOTO");
-		label.setFont(new Font("Dialog", Font.PLAIN, 50));
-		label.setAlignment(Label.CENTER);
-		label.setBounds(0, 0, 260, 130);
-		panel_2.add(label);
+		JLabel lblNewLabel = new JLabel("Bienvenido!");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		lblNewLabel.setBounds(100, 31, 112, 30);
+		panel.add(lblNewLabel);
 	}
 }
