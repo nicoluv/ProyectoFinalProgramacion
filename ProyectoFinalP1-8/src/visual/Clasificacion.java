@@ -102,7 +102,7 @@ public class Clasificacion extends JDialog {
 			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
-				okButton = new JButton("Perfil del Equipo");
+				okButton = new JButton("Tarjeta del Equipo");
 				okButton.setFont(new Font("Tahoma", Font.PLAIN, 11));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
