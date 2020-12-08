@@ -109,13 +109,44 @@ public class AdmTorneo implements Serializable{
 		return encontrado;
 	}
 	
+//	public void GuardarInfo(AdmTorneo admi) {
+//		
+//		File f = new File("Info.dat");
+//		
+//		try {
+//			FileOutputStream inf = new FileOutputStream(f);
+//			ObjectOutputStream obj = new ObjectOutputStream(inf);
+//			obj.writeObject(admi);
+//			obj.close();
+//			
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
+//	
+//	public AdmTorneo CargarInfo() {
+//		
+//		AdmTorneo aux = null;
+//		
+//		try {
+//			FileInputStream f = new FileInputStream("Info.dat");
+//			ObjectInputStream obj = new ObjectInputStream(f);
+//			aux = (AdmTorneo) obj.readObject();
+//			obj.close();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return aux;
+//	}
+	
 	public void GuardarInfo(AdmTorneo admi) {
-		
-		File f = new File("Info.dat");
+		File f = new File("Datos.dat");
 		
 		try {
-			FileOutputStream inf = new FileOutputStream(f);
-			ObjectOutputStream obj = new ObjectOutputStream(inf);
+			FileOutputStream datos = new FileOutputStream(f);
+			ObjectOutputStream obj = new ObjectOutputStream(datos);
 			obj.writeObject(admi);
 			obj.close();
 			
@@ -127,19 +158,19 @@ public class AdmTorneo implements Serializable{
 	
 	public AdmTorneo CargarInfo() {
 		
-		AdmTorneo aux = null;
+		AdmTorneo admi = null;
 		
 		try {
-			FileInputStream f = new FileInputStream("Info.dat");
+			FileInputStream f = new FileInputStream("Datos.dat");
 			ObjectInputStream obj = new ObjectInputStream(f);
-			aux = (AdmTorneo) obj.readObject();
+			admi = (AdmTorneo) obj.readObject();
 			obj.close();
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		
-		return aux;
+		return admi;
 	}
+
 	
 
 	
