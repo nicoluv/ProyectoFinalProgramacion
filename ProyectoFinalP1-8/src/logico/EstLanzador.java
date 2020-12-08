@@ -1,7 +1,13 @@
 package logico;
 
-public class EstLanzador {
+import java.io.Serializable;
+
+public class EstLanzador implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int JuegosIni;
 	private int HitsPitch;
 	private int CarrPitch, CarrLimpias;

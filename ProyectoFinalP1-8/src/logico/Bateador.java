@@ -34,7 +34,7 @@ public class Bateador extends Jugador{
 		// TODO Auto-generated method stub
 		float avg = 0;
 		avg = (float) hitsConectados/basesAlcanzadas;
-		miEstadistica.setAVG(avg);;
+		miEstadistica.setAVG(avg);
 		
 		return 0;
 	}

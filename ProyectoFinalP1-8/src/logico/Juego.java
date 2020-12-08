@@ -1,9 +1,14 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Juego {
+public class Juego implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Equipo casa;
 	private Equipo visitante;
 	private int puntosCasa;
@@ -29,10 +34,10 @@ public class Juego {
 	public String getEquipoGanador() {
 		return equipoGanador;
 	}
+	
 
 	public void setEquipoGanador(String equipoGanador) {
 		this.equipoGanador = equipoGanador;
-		this.enJuego = enJuego;
 	}
 
 	public Equipo getCasa() {

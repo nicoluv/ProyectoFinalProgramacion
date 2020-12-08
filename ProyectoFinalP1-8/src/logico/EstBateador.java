@@ -1,7 +1,13 @@
 package logico;
 
-public class EstBateador {
-	 private int juegosJugados;
+import java.io.Serializable;
+
+public class EstBateador  implements Serializable{
+	 /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int juegosJugados;
 	 private int turnos;
 	 private int hitsConectados;
 	 private int doblesConectados;

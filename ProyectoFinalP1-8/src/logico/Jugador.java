@@ -1,11 +1,16 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class Jugador {
+public abstract class Jugador  implements Serializable{
 
-    protected String nombre;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected String nombre;
     protected String posicion;
     protected int numero;
     protected float estatura;
