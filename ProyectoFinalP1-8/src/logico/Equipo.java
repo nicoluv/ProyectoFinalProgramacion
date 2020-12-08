@@ -1,166 +1,120 @@
- package logico;
+
+package logico;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Equipo  implements Serializable{
-
-	/**
-	 * 
-	 */
+public class Equipo implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
-	private String entrenador;
-	private String nombre;
-	private String estadio;
-	private int campeonatos;
-	private int seriesCaribe;
-	private int juegosPerdidos;
-	private int juegosGanados;
-	private int juegosJugados;
-	private int cantJugadores;
-	private int cantLesiones = 0;
-	private ArrayList<Jugador> misJugadores = new ArrayList<>();
-
-
-
+	private String Nombre;
+	private String Provincia;
+	private String Estadio;
+	private String Manager;
+	private int Campeonatos;
+	private int JugGanados;
+	private int JugPerdidos;
+	private int JugJugados;
+	private ArrayList<Jugador> jugadores = new ArrayList<>();
+	private int CantLesiones = 0;
 	
-
-	public Equipo(String entrenador, String nombre, String estadio, int campeonatos, int seriesCaribe,
-			int juegosPerdidos, int juegosGanados) {
+	public Equipo(String nombre, String provincia, String estadio, int campeonatos, int jugGanados, int jugPerdidos, int Jugjugados, String manager) {
 		super();
-		this.entrenador = entrenador;
-		this.nombre = nombre;
-		this.estadio = estadio;
-		this.campeonatos = campeonatos;
-		this.seriesCaribe = seriesCaribe;
-		this.juegosPerdidos = juegosPerdidos;
-		this.juegosGanados = juegosGanados;
+		Nombre = nombre;
+		Provincia = provincia;
+		Estadio = estadio;
+		Campeonatos = campeonatos;
+		JugGanados = jugGanados;
+		JugPerdidos = jugPerdidos;
+		JugJugados = Jugjugados;
+		Manager = manager;
 	}
-
-
-	public int getCampeonatos() {
-		return campeonatos;
-	}
-
-
-	public void setCampeonatos(int campeonatos) {
-		this.campeonatos = campeonatos;
-	}
-
-
-	public int getSeriesCaribe() {
-		return seriesCaribe;
-	}
-
-
-	public void setSeriesCaribe(int seriesCaribe) {
-		this.seriesCaribe = seriesCaribe;
-	}
-
-
-	public String getEntrenador() {
-		return entrenador;
-	}
-
-	public void setEntrenador(String entrenador) {
-		this.entrenador = entrenador;
-	}
-
+	
+	
 	public String getNombre() {
-		return nombre;
+		return Nombre;
 	}
-
 	public void setNombre(String nombre) {
-		this.nombre = nombre;
+		Nombre = nombre;
 	}
-
+	public String getProvincia() {
+		return Provincia;
+	}
+	public void setProvincia(String provincia) {
+		Provincia = provincia;
+	}
 	public String getEstadio() {
-		return estadio;
+		return Estadio;
 	}
-
 	public void setEstadio(String estadio) {
-		this.estadio = estadio;
+		Estadio = estadio;
 	}
-
-
-	public int getJuegosPerdidos() {
-		return juegosPerdidos;
+	public int getCampeonatos() {
+		return Campeonatos;
 	}
-
-
-	public void setJuegosPerdidos(int juegosPerdidos) {
-		this.juegosPerdidos = juegosPerdidos;
+	public void setCampeonatos(int campeonatos) {
+		Campeonatos = campeonatos;
 	}
-
-
-	public int getJuegosGanados() {
-		return juegosGanados;
+	public int getJugGanados() {
+		return JugGanados;
 	}
-
-
-	public void setJuegosGanados(int juegosGanados) {
-		this.juegosGanados = juegosGanados;
+	public void setJugGanados(int jugGanados) {
+		JugGanados = jugGanados;
 	}
-
-	
-
-	public int getJuegosJugados() {
-		return juegosJugados;
+	public int getJugPerdidos() {
+		return JugPerdidos;
 	}
-
-
-	public void setJuegosJugados(int juegosJugados) {
-		this.juegosJugados = juegosJugados;
+	public void setJugPerdidos(int jugPerdidos) {
+		JugPerdidos = jugPerdidos;
 	}
-
-
-	public int getCantJugadores() {
-		return cantJugadores;
+	public ArrayList<Jugador> getJugadores() {
+		return jugadores;
 	}
-
-	public void setCantJugadores(int cantJugadores) {
-		this.cantJugadores = cantJugadores;
-	}
-
-	public ArrayList<Jugador> getMisJugadores() {
-		return misJugadores;
-	}
-
-	public void setMisJugadores(ArrayList<Jugador> misJugadores) {
-		this.misJugadores = misJugadores;
+	public void setJugadores(ArrayList<Jugador> jugadores) {
+		this.jugadores = jugadores;
 	}
 	
-	public void agregarJugador(Jugador aux) {
+	public void InsertarJugador(Jugador aux) {
+		jugadores.add(aux);
+	}
 
-		misJugadores.add(aux);
-		cantJugadores++;
+
+	public int getJugJugados() {
+		return JugJugados;
+	}
+
+
+	public void setJugJugados(int jugJugados) {
+		JugJugados = jugJugados;
 	}
 	
-	public void agregarJuegPerdido() {
-		juegosPerdidos++;
-		juegosJugados++;
+	public void Victoria() {
+		JugJugados++;
+		JugGanados++;
 	}
 	
-	public void agregarJuegGanado() {
-		juegosGanados++;
-		juegosJugados++;
+	public void Derrota() {
+		JugJugados++;
+		JugPerdidos++;
+	}
+
+
+	public String getManager() {
+		return Manager;
+	}
+
+
+	public void setManager(String manager) {
+		Manager = manager;
 	}
 
 
 	public int getCantLesiones() {
-		return cantLesiones;
+		return CantLesiones;
 	}
 
 
 	public void setCantLesiones(int cantLesiones) {
-		this.cantLesiones = cantLesiones;
-	}	
-	
-	
-	
-	
-	
-	
-	
-
+		CantLesiones = cantLesiones;
+	}
 }

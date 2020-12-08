@@ -3,72 +3,66 @@ package logico;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Lesion implements Serializable {
-	
+public class Lesion implements Serializable{
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Date fechaLesion;
-	private String tipo;
-	private String localizacion;
-	private String descripcion;
-	private int diasDescanso;
-
+	private String TipoLesion;
+	private Date FechaLesion;
+	private int DiasRec;
+	private String AtendNombre;
+	private String Descripcion;
 	
-	
-
-	
-	public Lesion(Date fechaLesion, String tipo, String localizacion, String descripcion, int diasDescanso) {
+	public Lesion(String tipoLesion, Date fechaLesion, int diasRec, String nombre, String descripcion) {
 		super();
-		this.fechaLesion = fechaLesion;
-		this.tipo = tipo;
-		this.localizacion = localizacion;
-		this.descripcion = descripcion;
-		this.diasDescanso = diasDescanso;
+		TipoLesion = tipoLesion;
+		FechaLesion = fechaLesion;
+		DiasRec = diasRec;
+		AtendNombre = nombre;
+		Descripcion = descripcion;
 	}
 
-	
-
-	public int getDiasDescanso() {
-		return diasDescanso;
+	public String getTipoLesion() {
+		return TipoLesion;
 	}
 
-
-
-	public void setDiasDescanso(int diasDescanso) {
-		this.diasDescanso = diasDescanso;
+	public void setTipoLesion(String tipoLesion) {
+		TipoLesion = tipoLesion;
 	}
-
-
-
-	public String getLocalizacion() {
-		return localizacion;
-	}
-
-
-	public void setLocalizacion(String localizacion) {
-		this.localizacion = localizacion;
-	}
-
 
 	public Date getFechaLesion() {
-		return fechaLesion;
+		return FechaLesion;
 	}
+
 	public void setFechaLesion(Date fechaLesion) {
-		this.fechaLesion = fechaLesion;
+		FechaLesion = fechaLesion;
 	}
-	public String getTipo() {
-		return tipo;
+
+	public int getDiasRec() {
+		return DiasRec;
 	}
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
+
+	public void setDiasRec(int diasRec) {
+		DiasRec = diasRec;
 	}
+
+	public String getAtendNombre() {
+		return AtendNombre;
+	}
+
+	public void setAtendNombre(String atendNombre) {
+		AtendNombre = atendNombre;
+	}
+
 	public String getDescripcion() {
-		return descripcion;
+		return Descripcion;
 	}
+
 	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+		Descripcion = descripcion;
 	}
+	
 	
 }

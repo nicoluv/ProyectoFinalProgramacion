@@ -2,11 +2,8 @@ package logico;
 
 import java.io.Serializable;
 
-public class EstLanzador implements Serializable {
+public class EstadPitcher implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private int JuegosIni;
 	private int HitsPitch;
@@ -18,8 +15,8 @@ public class EstLanzador implements Serializable {
 	private float PromCL;
 	private int EntradasJugadas;
 	
-	public EstLanzador(int juegosIni, int hitsPitch, int carrPitch, int carrLimpias, int jonronPitch, int bBPitch,
-			int ponches, int vict, int der, int EntradasJugadas) {
+	public EstadPitcher(int juegosIni, int hitsPitch, int carrPitch, int carrLimpias, int jonronPitch, int bBPitch,
+			int ponches, int vict, int der, float promCL, int EntradasJugadas) {
 		super();
 		JuegosIni = juegosIni;
 		HitsPitch = hitsPitch;
@@ -30,7 +27,7 @@ public class EstLanzador implements Serializable {
 		Ponches = ponches;
 		Vict = vict;
 		Der = der;
-		PromCL = 0;
+		PromCL = promCL;
 	}
 
 	public int getJuegosIni() {
@@ -126,6 +123,4 @@ public class EstLanzador implements Serializable {
 		aux = (float) (CarrLimpias * 9) / EntradasJugadas;
 		setPromCL(aux);
 	}
-	
-	
 }

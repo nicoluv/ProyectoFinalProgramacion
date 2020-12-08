@@ -2,11 +2,8 @@ package logico;
 
 import java.io.Serializable;
 
-public class Estadistica  implements Serializable{
-
-	/**
-	 * 
-	 */
+public class Estadistica implements Serializable{
+	
 	private static final long serialVersionUID = 1L;
 	private int AB,D,H,HR,Dobles,Triples,BB,Ponches,Errores,JuegosJug;
 	private float AVG;
@@ -120,5 +117,5 @@ public class Estadistica  implements Serializable{
 		setAVG(aux);
 	}
 	
-	
 }
+

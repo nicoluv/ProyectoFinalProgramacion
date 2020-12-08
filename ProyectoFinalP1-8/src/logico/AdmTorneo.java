@@ -1,147 +1,107 @@
 package logico;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.io.*;
 
-public class AdmTorneo implements Serializable{
+public class Administracion implements Serializable{
 	
-	private ArrayList<Equipo> misEquipos;
-	private ArrayList<Juego> misJuegos;
-	private static AdmTorneo administracion = null;
 	private static final long serialVersionUID = 1L;
+	private ArrayList<Equipo> MisEquipos;
+	private ArrayList<Partido> MisPartidos;
+	private static Administracion MiAdmin = null;
 	
-	private AdmTorneo() {
+	private Administracion() {
 		super();
-	
-		misEquipos = new ArrayList<>();
-		misJuegos = new ArrayList<>();
+		MisPartidos = new ArrayList<>();
+		MisEquipos = new ArrayList<>();
 	}
 	
-	public static AdmTorneo getInstancia() {
-		if(administracion == null) {
-			administracion = new AdmTorneo();
+	public static Administracion getInstancia() {
+		if(MiAdmin == null) {
+			MiAdmin = new Administracion();
 		}
-		return administracion;
+		return MiAdmin;
 	}
-
+	
+	public static void setAdministracion(Administracion admi) {
+		Administracion.MiAdmin = admi;
+	}
 
 	public ArrayList<Equipo> getMisEquipos() {
-		return misEquipos;
+		return MisEquipos;
 	}
 
 	public void setMisEquipos(ArrayList<Equipo> misEquipos) {
-		this.misEquipos = misEquipos;
+		MisEquipos = misEquipos;
 	}
 
-	public ArrayList<Juego> getMisJuegos() {
-		return misJuegos;
+	public ArrayList<Partido> getMisPartidos() {
+		return MisPartidos;
 	}
 
-	public void setMisJuegos(ArrayList<Juego> misJuegos) {
-		this.misJuegos = misJuegos;
-	}
-
-	public static void setAdministracion(AdmTorneo administracion) {
-		AdmTorneo.administracion = administracion;
+	public void setMisPartidos(ArrayList<Partido> misPartidos) {
+		MisPartidos = misPartidos;
 	}
 	
-	public void agregarEquipo(Equipo aux) {
-		misEquipos.add(aux);
+	public void insertarEquipo(Equipo aux) {
+		MisEquipos.add(aux);
 	}
 	
-	public void agregarPartido(Juego aux) {
-		misJuegos.add(aux);
+	public void insertarPartido(Partido aux) {
+		MisPartidos.add(aux);
 	}
 	
-	public Equipo encontrarEquipo(String nombre) {
-		 
-		Equipo encontrado = null;
+	public Equipo buscarEquipo(String nom) {
 		
-		for (Equipo aux : misEquipos) {
-			if(aux.getNombre().equalsIgnoreCase(nombre)) {
-				encontrado = aux;
+		for (Equipo i : MisEquipos) {
+			if(i.getNombre() == nom) {
+				return i;
 			}
 		}
 		
-		return encontrado;
+		return null;
 	}
 	
-	public int indiceEquipo(String nombre) {
+	public int findEquipo(String nom) {
 		
-		int temp = -1;
-		
-		for (int i = 0; i < misEquipos.size(); i++) {
-			if(misEquipos.get(i).getNombre().equalsIgnoreCase(nombre)) {
-				temp = i;
+		for (int i = 0; i < MisEquipos.size(); i++) {
+			if(MisEquipos.get(i).getNombre() == nom) {
+				return i;
 			}
 		}
 		
-		return temp;
+		return -1;
 	}
 	
-	public int encontrarJugador(int i, String nombre) {
+	public int findJugador(int i, String nom) {
 		
-		int temp = -1;
-		
-		for (int j = 0; j < misEquipos.get(i).getMisJugadores().size(); j++) {
-			if(misEquipos.get(i).getMisJugadores().get(j).getNombre().equalsIgnoreCase(nombre)) {
-				temp = j;
+		for (int j = 0; j < MisEquipos.get(i).getJugadores().size(); j++) {
+			if(MisEquipos.get(i).getJugadores().get(j).getNombre() == nom) {
+				return j;
 			}
 		}
 		
-		return temp;
+		return -1;
 	}
 	
-	public boolean encontrarNumJug(Equipo equipo, int num) {
+	public boolean buscarNumJug(Equipo e, int num) {
 		
-		boolean encontrado = false;
-		
-		for (Jugador aux : equipo.getMisJugadores()) {
-			if(aux.getNumero() == num) {
-				encontrado = true;
+		for (Jugador i : e.getJugadores()) {
+			if(i.getNumero() == num) {
+				return true;
 			}
 		}
 		
-		return encontrado;
+		return false;
 	}
 	
-//	public void GuardarInfo(AdmTorneo admi) {
-//		
-//		File f = new File("Info.dat");
-//		
-//		try {
-//			FileOutputStream inf = new FileOutputStream(f);
-//			ObjectOutputStream obj = new ObjectOutputStream(inf);
-//			obj.writeObject(admi);
-//			obj.close();
-//			
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		
-//	}
-//	
-//	public AdmTorneo CargarInfo() {
-//		
-//		AdmTorneo aux = null;
-//		
-//		try {
-//			FileInputStream f = new FileInputStream("Info.dat");
-//			ObjectInputStream obj = new ObjectInputStream(f);
-//			aux = (AdmTorneo) obj.readObject();
-//			obj.close();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return aux;
-//	}
-	
-	public void GuardarInfo(AdmTorneo admi) {
+	public void Guardar(Administracion admi) {
 		File f = new File("Datos.dat");
 		
 		try {
@@ -156,26 +116,30 @@ public class AdmTorneo implements Serializable{
 		
 	}
 	
-	public AdmTorneo CargarInfo() {
+	public Administracion Cargar() {
 		
-		AdmTorneo admi = null;
+		Administracion admi = null;
 		
 		try {
 			FileInputStream f = new FileInputStream("Datos.dat");
 			ObjectInputStream obj = new ObjectInputStream(f);
-			admi = (AdmTorneo) obj.readObject();
+			admi = (Administracion) obj.readObject();
 			obj.close();
 		} catch (Exception e) {
 		}
 		
 		return admi;
 	}
-
 	
-
-	
-	
-
-
-
+	public int findPitcher(int e) {
+		int cont = 0;
+		for (Jugador i : Administracion.getInstancia().getMisEquipos().get(e).getJugadores()) {
+			if(i instanceof Pitcher) {
+				return cont;
+			}
+			cont++;
+		}
+		
+		return -1;
+	}
 }
