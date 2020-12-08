@@ -9,15 +9,24 @@ public class EstBateador {
 	 private int homeRun;
 	 private int basesAlcanzadas;
 	 private int carrerasRemontadas;
+	 private int carreras;
 	 private int basePorBola;
 	 private int ponches;
 	 private int basesRobadas;
 	 private int outRobo;
 	 private int doblePlay;
+	 private float AVG;
 	 
+
+	public int getCarreras() {
+		return carreras;
+	}
+	public void setCarreras(int carreras) {
+		this.carreras = carreras;
+	}
 	public EstBateador(int juegosJugados, int turnos, int hitsConectados, int doblesConectados, int triplesConectados,
-			int homeRun, int basesAlcanzadas, int carrerasRemontadas, int basePorBola, int ponches, int basesRobadas,
-			int outRobo, int doblePlay) {
+			int homeRun, int basesAlcanzadas, int carrerasRemontadas, int carreras, int basePorBola, int ponches,
+			int basesRobadas, int outRobo, int doblePlay, float aVG) {
 		super();
 		this.juegosJugados = juegosJugados;
 		this.turnos = turnos;
@@ -27,11 +36,13 @@ public class EstBateador {
 		this.homeRun = homeRun;
 		this.basesAlcanzadas = basesAlcanzadas;
 		this.carrerasRemontadas = carrerasRemontadas;
+		this.carreras = carreras;
 		this.basePorBola = basePorBola;
 		this.ponches = ponches;
 		this.basesRobadas = basesRobadas;
 		this.outRobo = outRobo;
 		this.doblePlay = doblePlay;
+		AVG = aVG;
 	}
 	public int getJuegosJugados() {
 		return juegosJugados;
@@ -111,6 +122,13 @@ public class EstBateador {
 	public void setDoblePlay(int doblePlay) {
 		this.doblePlay = doblePlay;
 	}
+	public float getAVG() {
+		return AVG;
+	}
+	public void setAVG(float aVG) {
+		AVG = aVG;
+	}
+	
 	 
 	 
 

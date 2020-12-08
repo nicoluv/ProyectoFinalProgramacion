@@ -172,6 +172,6 @@ public abstract class Jugador {
 		this.miLesion = miLesion;
 	}
 
-	public abstract float controlarDesempeno();
+	public abstract float controlarDesempeno(int num1,int num2);
     
 }

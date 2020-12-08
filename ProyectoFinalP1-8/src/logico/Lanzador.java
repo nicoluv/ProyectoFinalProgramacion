@@ -7,10 +7,6 @@ public class Lanzador extends Jugador {
 
 	private EstLanzador miEstadistica;
 
-	
-
-
-
 	public Lanzador(String nombre, String posicion, int numero, float estatura, float peso, Date nacimiento, String bt,
 			boolean disponible, String paisOrigen, String equipo, EstLanzador miEstadistica) {
 		super(nombre, posicion, numero, estatura, peso, nacimiento, bt, disponible, paisOrigen, equipo);
@@ -30,7 +26,7 @@ public class Lanzador extends Jugador {
 	}
 
 	@Override
-	public float controlarDesempeno() {
+	public float controlarDesempeno(int num1, int num2) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

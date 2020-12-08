@@ -91,31 +91,36 @@ public class RegistrarJugador extends JDialog {
 	private JRadioButton rdbtnLanzador;
 	
 	private JLabel lblSubirImagen;
+	private static File imgjug;
 	private BufferedImage imagen;
 	private JPanel panelLanzador;
 	private JPanel panelBateador;
 	private JPanel panelTipo;
+	
+	private static int MiEquipo, MiJugador;
+	private boolean modificar = false;
 
 
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			RegistrarJugador dialog = new RegistrarJugador();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		
-		}
-	}
-
 	/**
 	 * Create the dialog.
 	 */
-	public RegistrarJugador() {
+	public RegistrarJugador(int pl1, int eq1, boolean modif) {
+		
+		MiJugador = pl1;
+		MiEquipo = eq1;
+		modificar = modif;
+		
+		if(modificar == true) {
+			setTitle("Modificar jugador");
+		}
+		else {
+			setTitle("Registrar jugador");
+		}
+		
 		setEnabled(false);
 		setBounds(100, 100, 634, 440);
 		getContentPane().setLayout(new BorderLayout());
@@ -489,6 +494,7 @@ public class RegistrarJugador extends JDialog {
 			rdbtnBateador.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbtnBateador.setSelected(true);
+					rdbtnLanzador.setSelected(false);
 					panelLanzador.setVisible(false);
 					panelBateador.setVisible(true);
 					
@@ -502,6 +508,7 @@ public class RegistrarJugador extends JDialog {
 			rdbtnLanzador.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					rdbtnLanzador.setSelected(true);
+					rdbtnBateador.setSelected(false);
 					panelLanzador.setVisible(true);
 					panelBateador.setVisible(false);
 					indice = comboBoxPosicion.getSelectedIndex();
@@ -540,12 +547,14 @@ public class RegistrarJugador extends JDialog {
 						String diponibilidad = comboBoxDisponible.getSelectedItem().toString();
 						boolean disp=true;
 						String BT = comboBoxBT.getSelectedItem().toString();
-
+						boolean validarnum=false;
 						
-						boolean validarnum =AdmTorneo.getInstancia().encontrarNumJug(AdmTorneo.getInstancia().encontrarEquipo(equipo), numero);
-				
+						if(modificar == false) {
+							validarnum =AdmTorneo.getInstancia().encontrarNumJug(AdmTorneo.getInstancia().encontrarEquipo(equipo), numero);
+						}
+
 						if(validarnum) {
-							JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos", "Advertencia", JOptionPane.WARNING_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Existe un jugador con este número.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 						}
 						else if(dateChooser.getCalendar().get(Calendar.YEAR) >= calcular.get(Calendar.YEAR) || 
 								(calcular.get(Calendar.YEAR) - dateChooser.getCalendar().get(Calendar.YEAR)) < 16) {
@@ -553,6 +562,7 @@ public class RegistrarJugador extends JDialog {
 							JOptionPane.showMessageDialog(null, "Debe ingresar un jugador mayor o igual a 16 años", "Advertencia", JOptionPane.WARNING_MESSAGE);
 						}
 						else {
+
 							 if(!nombre.equalsIgnoreCase("") && !posicion.equalsIgnoreCase("<Seleccionar>") && !pais.equalsIgnoreCase("<Seleccionar>") && !equipo.equalsIgnoreCase("") 
 									&&( date!=null) && (estatura !=0) && (peso!=0) && numero!=0 && !validarnum) {
 								
@@ -561,6 +571,7 @@ public class RegistrarJugador extends JDialog {
 								}else {
 									disp=false;	
 								}
+								
 								if(rdbtnLanzador.isSelected()) {
 									//Estadistica Lanzador
 									int GPpict,ERpict,Hpict,Ppict,Gpict,GSpict,HRpict,CLpict,BBpict,Kpict;
@@ -577,6 +588,40 @@ public class RegistrarJugador extends JDialog {
 																
 									EstLanzador miEst = new EstLanzador(GSpict, Hpict, ERpict, CLpict, HRpict, BBpict, Kpict, Gpict, Ppict, GPpict);
 									Lanzador pitcher = new Lanzador(nombre, posicion, numero, estatura, peso, date, BT, disp, pais, equipo, miEst);
+									if(modificar) {
+										AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().set(MiJugador, pitcher);
+										AdmTorneo.getInstancia().GuardarInfo(AdmTorneo.getInstancia());
+										
+										if(imgjug.exists()) {
+											try {
+												imagen = ImageIO.read(imgjug);
+												imgjug.delete();
+												imgjug = new File("imgjugadores/" + AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getNombre() + ".png");
+												ImageIO.write(imagen, "png", new File(imgjug.toString()));
+											} catch (IOException e1) {
+												// TODO Auto-generated catch block
+												e1.printStackTrace();
+											}
+										}
+										
+										JOptionPane.showMessageDialog(null, "Se modificó el jugador con exito.");
+										dispose();
+									}else {
+										int input;
+										AdmTorneo.getInstancia().getMisEquipos().get(comboBoxEquipo.getSelectedIndex()).getMisJugadores().add(pitcher);
+										AdmTorneo.getInstancia().GuardarInfo(AdmTorneo.getInstancia());
+										JOptionPane.showMessageDialog(null, "Se registró el jugador con exito.");
+										input = JOptionPane.showConfirmDialog(null, "¿Desea registrar otro jugador?","Confirmación",JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+										
+										if(input == 0) {
+											LimpiarCampos();
+										}
+										else {
+											dispose();
+										}
+										
+									}
+									
 									}
 									if(rdbtnBateador.isSelected()) {
 									//Estadistica Bateador
@@ -594,14 +639,97 @@ public class RegistrarJugador extends JDialog {
 									K=Integer.parseInt( spinnerK.getValue().toString());
 									SB=Integer.parseInt( spinnerSB.getValue().toString());
 									DP=Integer.parseInt( spinnerDP.getValue().toString());
-									EstBateador miEst = new EstBateador(GP, AB, H, B2, B3, HR, TB, RBI, BB, K, SB, 0, 0);
+									
+									EstBateador miEst = new EstBateador(GP, AB, H, B2, B3, HR, TB, RBI, R, BB, K, SB, 0, DP, 0); 
 									Bateador bateador = new Bateador(nombre, posicion, numero, estatura, peso, date, BT, disp, pais, equipo, miEst);
+									if(AB > 0 && H > 0) {
+										bateador.controlarDesempeno(H, AB);
+										}
+									if(modificar) {
+										AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().set(MiJugador, bateador);
+										AdmTorneo.getInstancia().GuardarInfo(AdmTorneo.getInstancia());
+										
+										if(imgjug.exists()) {
+											try {
+												imagen = ImageIO.read(imgjug);
+												imgjug.delete();
+												imgjug = new File("imgjugadores/" + AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getNombre() + ".png");
+												ImageIO.write(imagen, "png", new File(imgjug.toString()));
+											} catch (IOException e1) {
+												// TODO Auto-generated catch block
+												e1.printStackTrace();
+											}
+										}
+										
+										JOptionPane.showMessageDialog(null, "Se modificó el jugador con exito.");
+										dispose();
+									}else {
+										int input;
+										AdmTorneo.getInstancia().getMisEquipos().get(comboBoxEquipo.getSelectedIndex()).getMisJugadores().add(bateador);
+										AdmTorneo.getInstancia().GuardarInfo(AdmTorneo.getInstancia());
+										JOptionPane.showMessageDialog(null, "Se registró el jugador con exito.");
+										input = JOptionPane.showConfirmDialog(null, "¿Desea registrar otro jugador?","Confirmación",JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+										
+										if(input == 0) {
+											LimpiarCampos();
+										}
+										else {
+											dispose();
+										}
+										
+									}
 									}
 								
 							}else {
+								
 								JOptionPane.showMessageDialog(null, "Debe ingresar todos los datos", "Advertencia", JOptionPane.WARNING_MESSAGE);
 							}
 						}
+					
+					}
+
+					private void LimpiarCampos() {
+						// TODO Auto-generated method stub
+						textFieldNombre.setText("");
+						spinnerEstatura.setValue(170);
+						spinnerPeso.setValue(65);
+						spinnerNumero.setValue(0);
+						
+						spinnerBB.setValue(0); 
+						spinner2B.setValue(0);
+						spinner3B.setValue(0);
+						spinnerGP.setValue(0);
+						spinnerAB.setValue(0);
+						spinnerH.setValue(0);
+						spinnerHR.setValue(0);
+						spinnerRBI.setValue(0);
+						spinnerTB.setValue(0);
+						spinnerK.setValue(0);
+						spinnerSB.setValue(0);
+						spinnerDP.setValue(0);
+						spinnerR.setValue(0); 
+						
+						spinnerHpitch.setValue(0);
+						spinnerCL.setValue(0);
+						spinnerPpitch.setValue(0);
+						spinnerGpitch.setValue(0);
+						spinnerGSpitch.setValue(0);
+						spinnerHRpitch.setValue(0);
+						spinnerBBpitch.setValue(0);
+						spinnerKpitch.setValue(0);
+						spinnerGPpitch.setValue(0);
+						spinnerERpitch.setValue(0);
+						
+						dateChooser.setDate(null);
+						
+						comboBoxPosicion.setSelectedItem(0);;
+						comboBoxPais.setSelectedItem(0);
+						comboBoxDisponible.setSelectedItem(0);
+						comboBoxBT.setSelectedItem(0);
+						comboBoxEquipo.setSelectedItem(0);
+						
+						
+						
 					}
 				});
 				okButton.setActionCommand("OK");
@@ -613,9 +741,77 @@ public class RegistrarJugador extends JDialog {
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
+			
+			if(modificar == true) {
+				ModificarJugador();
+			}
 		}
 	}
-	public JLabel getLblSubirImagen() {
-		return lblSubirImagen;
+
+	private void ModificarJugador() {
+		// TODO Auto-generated method stub
+		
+		//Informacion general
+		
+		textFieldNombre.setText(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getNombre());
+		comboBoxPosicion.setSelectedItem(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getPosicion());;
+		comboBoxPais.setSelectedItem(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getPaisOrigen());
+		comboBoxEquipo.setSelectedItem(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getEquipo());
+		dateChooser.setDate(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getNacimiento());
+		spinnerNumero.setValue(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getNumero());
+		spinnerEstatura.setValue(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getEstatura());
+		spinnerPeso.setValue(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getPeso());
+		if(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).isDisponible()==true) {
+			comboBoxDisponible.setSelectedItem("Si");
+		}else {
+			comboBoxDisponible.setSelectedItem("No");
+		}
+		comboBoxBT.setSelectedItem(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador).getBt());
+		comboBoxEquipo.setEnabled(false);
+		
+		Jugador player = AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador);
+		
+		if(AdmTorneo.getInstancia().getMisEquipos().get(MiEquipo).getMisJugadores().get(MiJugador) instanceof Bateador) {
+			//Informacion Bateador
+			rdbtnLanzador.setSelected(false);
+			rdbtnBateador.setSelected(true);
+			panelLanzador.setVisible(false);
+			panelBateador.setVisible(true);
+			spinnerBB.setValue(((Bateador) player).getMiEstadistica().getBasePorBola()); 
+			spinner2B.setValue(((Bateador) player).getMiEstadistica().getDoblesConectados());
+			spinner3B.setValue(((Bateador) player).getMiEstadistica().getTriplesConectados());
+			spinnerGP.setValue(((Bateador) player).getMiEstadistica().getJuegosJugados());
+			spinnerAB.setValue(((Bateador) player).getMiEstadistica().getTurnos());
+			spinnerH.setValue(((Bateador) player).getMiEstadistica().getHitsConectados());
+			spinnerHR.setValue(((Bateador) player).getMiEstadistica().getHomeRun());
+			spinnerRBI.setValue(((Bateador) player).getMiEstadistica().getCarrerasRemontadas());
+			spinnerTB.setValue(((Bateador) player).getMiEstadistica().getBasesAlcanzadas());
+			spinnerK.setValue(((Bateador) player).getMiEstadistica().getPonches());
+			spinnerSB.setValue(((Bateador) player).getMiEstadistica().getBasesRobadas());
+			spinnerDP.setValue(((Bateador) player).getMiEstadistica().getDoblePlay());
+			spinnerR.setValue(((Bateador) player).getMiEstadistica().getCarreras()); 
+			
+		}else {
+			//Informacion Lanzador
+			rdbtnLanzador.setSelected(true);
+			rdbtnBateador.setSelected(false);
+			panelLanzador.setVisible(false);
+			panelBateador.setVisible(true);
+			spinnerHpitch.setValue(((Lanzador) player).getMiEstadistica().getHitsPitch());
+			spinnerCL.setValue(((Lanzador) player).getMiEstadistica().getCarrLimpias()); 
+			spinnerPpitch.setValue(((Lanzador) player).getMiEstadistica().getDer());
+			spinnerGpitch.setValue(((Lanzador) player).getMiEstadistica().getVict());
+			spinnerGSpitch.setValue(((Lanzador) player).getMiEstadistica().getJuegosIni());
+			spinnerHRpitch.setValue(((Lanzador) player).getMiEstadistica().getJonronPitch());
+			spinnerBBpitch.setValue(((Lanzador) player).getMiEstadistica().getBBPitch());
+			spinnerKpitch.setValue(((Lanzador) player).getMiEstadistica().getPonches());
+			spinnerGPpitch.setValue(((Lanzador) player).getMiEstadistica().getEntradasJugadas());
+			spinnerERpitch.setValue(((Lanzador) player).getMiEstadistica().getCarrPitch());
+			
+			
+		}
+
+		
 	}
+
 }

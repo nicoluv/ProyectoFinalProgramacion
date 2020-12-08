@@ -30,8 +30,12 @@ public class Bateador extends Jugador{
 	}
 
 	@Override
-	public float controlarDesempeno() {
+	public float controlarDesempeno(int hitsConectados,int basesAlcanzadas) {
 		// TODO Auto-generated method stub
+		float avg = 0;
+		avg = (float) hitsConectados/basesAlcanzadas;
+		miEstadistica.setAVG(avg);;
+		
 		return 0;
 	}
 	
