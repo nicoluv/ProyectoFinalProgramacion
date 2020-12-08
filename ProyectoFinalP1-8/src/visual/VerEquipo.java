@@ -191,7 +191,7 @@ public class VerEquipo extends JDialog {
 			btnEliminar.setEnabled(false);
 			btnVerJugador.setEnabled(false);
 			btnModificar.setEnabled(false);
-			String[] header = {"Nombre", "Pocision", "Pais de Origen", "Edad","Estado", "AVG"};
+			String[] header = {"Nombre", "Pocision", "Pais de Origen", "Nacimiento","Estado", "AVG"};
 			model = new DefaultTableModel();
 			model.setColumnIdentifiers(header);
 			table = new JTable();
@@ -275,7 +275,7 @@ public class VerEquipo extends JDialog {
 			JScrollPane scrollPane_1 = new JScrollPane();
 			PanelHistorial.add(scrollPane_1, BorderLayout.CENTER);
 			
-			String header2[] = {"Local", "Visitante","Estadio", "Hora", "Fecha", "Estado"};
+			String header2[] = {"Local", "Visitante","Estadio", "Fecha", "Estado"};
 			model2 = new DefaultTableModel();
 			model2.setColumnIdentifiers(header2);
 			tablePartidos = new JTable();

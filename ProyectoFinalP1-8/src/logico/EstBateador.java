@@ -17,13 +17,9 @@ public class EstBateador {
 	 private int doblePlay;
 	 private float AVG;
 	 
+	 
 
-	public int getCarreras() {
-		return carreras;
-	}
-	public void setCarreras(int carreras) {
-		this.carreras = carreras;
-	}
+	
 	public EstBateador(int juegosJugados, int turnos, int hitsConectados, int doblesConectados, int triplesConectados,
 			int homeRun, int basesAlcanzadas, int carrerasRemontadas, int carreras, int basePorBola, int ponches,
 			int basesRobadas, int outRobo, int doblePlay, float aVG) {
@@ -44,6 +40,14 @@ public class EstBateador {
 		this.doblePlay = doblePlay;
 		AVG = aVG;
 	}
+	
+	public int getCarreras() {
+		return carreras;
+	}
+	public void setCarreras(int carreras) {
+		this.carreras = carreras;
+	}
+	
 	public int getJuegosJugados() {
 		return juegosJugados;
 	}
