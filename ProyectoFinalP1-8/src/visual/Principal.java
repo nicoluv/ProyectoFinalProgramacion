@@ -145,8 +145,8 @@ AdmTorneo x = AdmTorneo.getInstancia().CargarInfo();
 		JMenuItem mnReJugador = new JMenuItem("jugador");
 		mnReJugador.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				RegistrarJugador regJ = new RegistrarJugador();
-				 regJ.setModal(true);
+				RegistrarJugador regJ = new RegistrarJugador(0,0,false);
+			 regJ.setModal(true);
 				 regJ.setVisible(true);
 			
 			
@@ -174,5 +174,20 @@ AdmTorneo x = AdmTorneo.getInstancia().CargarInfo();
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setBounds(349, 57, 46, 14);
 		panel_2.add(lblNewLabel);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 97, 21);
+		panel_2.add(menuBar);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			ListaEquipo le= new ListaEquipo();
+			le.setVisible(true);
+			}
+		});
+		btnNewButton.setBounds(259, 134, 89, 23);
+		panel_2.add(btnNewButton);
 	}
 }
