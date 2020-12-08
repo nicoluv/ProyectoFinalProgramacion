@@ -46,7 +46,7 @@ public class CambiarPitcher extends JDialog {
 	public CambiarPitcher(int e) {
 		MiEquipo = e;
 		setTitle("Intercambio del Lanzador");
-		setBounds(100, 100, 659, 391);
+		setBounds(100, 100, 659, 429);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -81,7 +81,7 @@ public class CambiarPitcher extends JDialog {
 				{
 					JLabel lblNewLabel = new JLabel("Intercambiar Lanzador");
 					lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
-					lblNewLabel.setBounds(247, 11, 143, 14);
+					lblNewLabel.setBounds(239, 11, 143, 14);
 					panel.add(lblNewLabel);
 				}
 				loadTable();
