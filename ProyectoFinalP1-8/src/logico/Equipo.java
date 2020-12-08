@@ -15,7 +15,7 @@ public class Equipo implements Serializable{
 	private int JugGanados;
 	private int JugPerdidos;
 	private int JugJugados;
-	private ArrayList<Jugador> jugadores = new ArrayList<>();
+	private ArrayList<Bateador> jugadores = new ArrayList<>();
 	private int CantLesiones = 0;
 	
 	public Equipo(String nombre, String provincia, String estadio, int campeonatos, int jugGanados, int jugPerdidos, int Jugjugados, String manager) {
@@ -67,14 +67,14 @@ public class Equipo implements Serializable{
 	public void setJugPerdidos(int jugPerdidos) {
 		JugPerdidos = jugPerdidos;
 	}
-	public ArrayList<Jugador> getJugadores() {
+	public ArrayList<Bateador> getJugadores() {
 		return jugadores;
 	}
-	public void setJugadores(ArrayList<Jugador> jugadores) {
+	public void setJugadores(ArrayList<Bateador> jugadores) {
 		this.jugadores = jugadores;
 	}
 	
-	public void InsertarJugador(Jugador aux) {
+	public void InsertarJugador(Bateador aux) {
 		jugadores.add(aux);
 	}
 

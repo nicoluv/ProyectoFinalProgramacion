@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class Jugador implements Serializable{
+public abstract class Bateador implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	protected String Nombre;
@@ -22,7 +22,7 @@ public abstract class Jugador implements Serializable{
 	protected int Edad;
 	protected boolean Estado = true;
 	
-	public Jugador(String nombre, Date fechaNacimiento, int peso, int altura, String lanzamiento, String bateo, String paisOrigen,
+	public Bateador(String nombre, Date fechaNacimiento, int peso, int altura, String lanzamiento, String bateo, String paisOrigen,
 			String posicion, String equipo, ArrayList<Lesion> lesiones, int numero, int edad) {
 		super();
 		Nombre = nombre;

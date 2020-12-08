@@ -2,7 +2,7 @@ package logico;
 
 import java.io.Serializable;
 
-public class EstadPitcher implements Serializable{
+public class EstadisticaPitcher implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private int JuegosIni;
@@ -15,7 +15,7 @@ public class EstadPitcher implements Serializable{
 	private float PromCL;
 	private int EntradasJugadas;
 	
-	public EstadPitcher(int juegosIni, int hitsPitch, int carrPitch, int carrLimpias, int jonronPitch, int bBPitch,
+	public EstadisticaPitcher(int juegosIni, int hitsPitch, int carrPitch, int carrLimpias, int jonronPitch, int bBPitch,
 			int ponches, int vict, int der, float promCL, int EntradasJugadas) {
 		super();
 		JuegosIni = juegosIni;

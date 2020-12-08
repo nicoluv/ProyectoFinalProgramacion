@@ -9,28 +9,28 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Administracion implements Serializable{
+public class AdmTorneo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Equipo> MisEquipos;
 	private ArrayList<Partido> MisPartidos;
-	private static Administracion MiAdmin = null;
+	private static AdmTorneo MiAdmin = null;
 	
-	private Administracion() {
+	private AdmTorneo() {
 		super();
 		MisPartidos = new ArrayList<>();
 		MisEquipos = new ArrayList<>();
 	}
 	
-	public static Administracion getInstancia() {
+	public static AdmTorneo getInstancia() {
 		if(MiAdmin == null) {
-			MiAdmin = new Administracion();
+			MiAdmin = new AdmTorneo();
 		}
 		return MiAdmin;
 	}
 	
-	public static void setAdministracion(Administracion admi) {
-		Administracion.MiAdmin = admi;
+	public static void setAdministracion(AdmTorneo admi) {
+		AdmTorneo.MiAdmin = admi;
 	}
 
 	public ArrayList<Equipo> getMisEquipos() {
@@ -92,7 +92,7 @@ public class Administracion implements Serializable{
 	
 	public boolean buscarNumJug(Equipo e, int num) {
 		
-		for (Jugador i : e.getJugadores()) {
+		for (Bateador i : e.getJugadores()) {
 			if(i.getNumero() == num) {
 				return true;
 			}
@@ -101,7 +101,7 @@ public class Administracion implements Serializable{
 		return false;
 	}
 	
-	public void Guardar(Administracion admi) {
+	public void Guardar(AdmTorneo admi) {
 		File f = new File("Datos.dat");
 		
 		try {
@@ -116,14 +116,14 @@ public class Administracion implements Serializable{
 		
 	}
 	
-	public Administracion Cargar() {
+	public AdmTorneo Cargar() {
 		
-		Administracion admi = null;
+		AdmTorneo admi = null;
 		
 		try {
 			FileInputStream f = new FileInputStream("Datos.dat");
 			ObjectInputStream obj = new ObjectInputStream(f);
-			admi = (Administracion) obj.readObject();
+			admi = (AdmTorneo) obj.readObject();
 			obj.close();
 		} catch (Exception e) {
 		}
@@ -133,7 +133,7 @@ public class Administracion implements Serializable{
 	
 	public int findPitcher(int e) {
 		int cont = 0;
-		for (Jugador i : Administracion.getInstancia().getMisEquipos().get(e).getJugadores()) {
+		for (Bateador i : AdmTorneo.getInstancia().getMisEquipos().get(e).getJugadores()) {
 			if(i instanceof Pitcher) {
 				return cont;
 			}

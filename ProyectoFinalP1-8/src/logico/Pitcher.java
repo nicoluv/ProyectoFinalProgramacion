@@ -3,10 +3,10 @@ package logico;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Pitcher extends Jugador {
+public class Pitcher extends Bateador {
 	
 	private static final long serialVersionUID = 1L;
-	private EstadPitcher estad;
+	private EstadisticaPitcher estad;
 
 	public Pitcher(String nombre, Date fechaNacimiento, int peso, int altura, String lanzamiento, String bateo, String paisOrigen,
 			String posicion, String equipo, ArrayList<Lesion> lesiones, int numero, int edad) {
@@ -15,11 +15,11 @@ public class Pitcher extends Jugador {
 		
 	}
 
-	public EstadPitcher getEstad() {
+	public EstadisticaPitcher getEstad() {
 		return estad;
 	}
 
-	public void setEstad(EstadPitcher estad) {
+	public void setEstad(EstadisticaPitcher estad) {
 		this.estad = estad;
 	}
 
