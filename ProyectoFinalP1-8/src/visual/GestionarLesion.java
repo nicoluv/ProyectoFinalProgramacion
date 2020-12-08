@@ -96,7 +96,7 @@ public class GestionarLesion extends JDialog {
 		JButton btnRecuperar = new JButton("Recuperar");
 		btnRecuperar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(index).isEstado() == false) {
+				if(AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(index).isDisponible() == false) {
 					int check = JOptionPane.showConfirmDialog(null, "Se encuentra recuperado y en plena forma", "Confirmacion", JOptionPane.WARNING_MESSAGE);
 					if(check == JOptionPane.OK_OPTION) {
 						AdmTorneo.getInstancia().getMisEquipos().get(cBoxEquipo.getSelectedIndex()).getMisJugadores().get(index).setMiLesion(null);
