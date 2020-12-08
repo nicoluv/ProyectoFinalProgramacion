@@ -39,7 +39,7 @@ public abstract class Jugador  implements Serializable{
 		this.equipo= equipo;
 	}
 
-// 
+
 
 	public boolean isDisponible() {
 		return disponible;
