@@ -13,6 +13,7 @@ public class Equipo {
 	private int juegosGanados;
 	private int juegosJugados;
 	private int cantJugadores;
+	private int cantLesiones = 0;
 	private ArrayList<Jugador> misJugadores = new ArrayList<>();
 
 
@@ -138,6 +139,16 @@ public class Equipo {
 	public void agregarJuegGanado() {
 		juegosGanados++;
 		juegosJugados++;
+	}
+
+
+	public int getCantLesiones() {
+		return cantLesiones;
+	}
+
+
+	public void setCantLesiones(int cantLesiones) {
+		this.cantLesiones = cantLesiones;
 	}	
 	
 	

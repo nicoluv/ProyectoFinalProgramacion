@@ -12,6 +12,7 @@ public abstract class Jugador {
     protected float peso;
     protected Date nacimiento; 
     protected String bt;
+    protected Lesion miLesion;
     protected boolean disponible  = true;
     protected String paisOrigen;
     protected ArrayList<Lesion> lesiones;
@@ -156,7 +157,20 @@ public abstract class Jugador {
 	public void setLesiones(ArrayList<Lesion> lesiones) {
 		this.lesiones = lesiones;
 	}
+	
+	public void agregarLesion (Lesion lesion) {
+		lesiones.add(lesion);
+	}
+	
 
+
+	public Lesion getMiLesion() {
+		return miLesion;
+	}
+
+	public void setMiLesion(Lesion miLesion) {
+		this.miLesion = miLesion;
+	}
 
 	public abstract float controlarDesempeno();
     

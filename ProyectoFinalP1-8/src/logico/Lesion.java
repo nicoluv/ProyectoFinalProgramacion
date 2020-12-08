@@ -1,23 +1,57 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Lesion {
+public class Lesion implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Date fechaLesion;
 	private String tipo;
+	private String localizacion;
 	private String descripcion;
-	private Date retornoEsperado;
+	private int diasDescanso;
+
 	
-	public Lesion(Date fechaLesion, String tipo, String descripcion, Date retornoEsperado) {
+	
+
+	
+	public Lesion(Date fechaLesion, String tipo, String localizacion, String descripcion, int diasDescanso) {
 		super();
-		//this.fechaLesion = new Date();
 		this.fechaLesion = fechaLesion;
 		this.tipo = tipo;
+		this.localizacion = localizacion;
 		this.descripcion = descripcion;
-		this.retornoEsperado = retornoEsperado;
+		this.diasDescanso = diasDescanso;
 	}
+
 	
+
+	public int getDiasDescanso() {
+		return diasDescanso;
+	}
+
+
+
+	public void setDiasDescanso(int diasDescanso) {
+		this.diasDescanso = diasDescanso;
+	}
+
+
+
+	public String getLocalizacion() {
+		return localizacion;
+	}
+
+
+	public void setLocalizacion(String localizacion) {
+		this.localizacion = localizacion;
+	}
+
+
 	public Date getFechaLesion() {
 		return fechaLesion;
 	}
@@ -36,10 +70,5 @@ public class Lesion {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public Date getRetornoEsperado() {
-		return retornoEsperado;
-	}
-	public void setRetornoEsperado(Date retornoEsperado) {
-		this.retornoEsperado = retornoEsperado;
-	}
+	
 }
